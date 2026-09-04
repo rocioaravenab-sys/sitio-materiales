@@ -1,0 +1,10 @@
+# ALLOWLIST DURA: se ignora TODO y solo se re-incluye la página publicada.
+# Este repo es PUBLICO. Con `*` ignorado, ni un `git add -A` accidental puede
+# stagear la base de datos, la configuracion local, los logs ni el codigo fuente.
+*
+!.gitignore
+!.nojekyll
+!index.html
+!img/
+!img/*.png
+!img/*.jpg
