@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Precios de Materiales de Construcción</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { --color-bg: #f5f5f5; --color-text: #333; --color-primary: #0066cc;
+                  --color-border: #ddd; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+        @media (prefers-color-scheme: dark) {
+            html { --color-bg: #1a1a1a; --color-text: #f0f0f0; --color-border: #444; }
+        }
+        body { background: var(--color-bg); color: var(--color-text); padding: 1rem; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { margin-bottom: 1rem; }
+        .info { padding: 1rem; background: var(--color-border); border-radius: 4px; margin-bottom: 1rem; }
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        th, td { padding: 0.75rem; text-align: left; border-bottom: 1px solid var(--color-border); }
+        th { background: var(--color-primary); color: #fff; }
+        tr:hover { background: rgba(0,0,0,0.05); }
+        .meta { font-size: 0.9rem; color: #666; margin-top: 2rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Precios de Materiales de Construcción</h1>
+        <div class="info">
+            <p><strong>Beta privada</strong> — Rastreador de precios de construcción con historial y cotización comparada.</p>
+            <p>Datos de: Puntomaestro (554), Construplaza (578), Easy (0).</p>
+        </div>
+
+        <h2>Catálogo por Proveedor</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Proveedor</th>
+                    <th>Productos</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Easy</td>
+                    <td>1493</td>
+                </tr>
+                <tr>
+                    <td>construplaza</td>
+                    <td>578</td>
+                </tr>
+                <tr>
+                    <td>puntomaestro</td>
+                    <td>554</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="meta">
+            <p>Generado: 2026-09-04T14:48:31.645718+00:00</p>
+            <p>©2026 — Uso personal, sin fines comerciales.</p>
+        </div>
+    </div>
+</body>
+</html>
