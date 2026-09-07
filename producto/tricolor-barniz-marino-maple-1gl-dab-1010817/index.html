@@ -14,103 +14,213 @@
 <meta property="og:image" content="https://cdn.shopify.com/s/files/1/0792/8099/6537/files/005002005_3_x78kniqtyxfuvpoo.jpg?v=1781818236">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%A9%3C/text%3E%3C/svg%3E">
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html {
-    --bg:#f5f5f5; --bg-alt:#fff; --text:#1f2328; --text-dim:#656d76;
-    --primary:#0a5cc2; --primary-ink:#fff; --border:#d7dbe0; --ok:#1a7f37; --warn:#b25000;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-    line-height:1.5;
+*{ box-sizing:border-box; margin:0; padding:0; }
+:root{
+    --bg:#f8fafc; --surface:#ffffff; --surface-2:#f1f5f9;
+    --text:#0f172a; --text-dim:#64748b; --text-mute:#94a3b8;
+    --border:#e2e8f0; --border-strong:#cbd5e1;
+    --accent:#ea580c; --accent-hover:#c2410c; --accent-soft:#fff7ed; --accent-line:rgba(234,88,12,.28); --accent-ring:rgba(234,88,12,.28);
+    --ok:#16a34a; --ok-soft:#f0fdf4; --ok-line:rgba(22,163,74,.3);
+    --warn:#b45309; --warn-soft:rgba(180,83,9,.1);
+    --shadow-sm:0 1px 2px rgba(15,23,42,.04),0 1px 3px rgba(15,23,42,.06);
+    --shadow-md:0 6px 16px rgba(15,23,42,.08);
+    --shadow-lg:0 16px 40px rgba(15,23,42,.12);
+    --radius:16px; --radius-sm:12px; --radius-xs:9px;
+    --maxw:1120px;
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
 }
 @media (prefers-color-scheme:dark){
-    html{ --bg:#16181c; --bg-alt:#1e2126; --text:#e8e8e8; --text-dim:#9aa0a6;
-          --primary:#4c9be8; --primary-ink:#08111d; --border:#333; --ok:#4caf50; --warn:#ffab40; }
+    :root{
+        --bg:#0b1120; --surface:#111827; --surface-2:#1e293b;
+        --text:#f1f5f9; --text-dim:#94a3b8; --text-mute:#64748b;
+        --border:#1e293b; --border-strong:#334155;
+        --accent:#fb923c; --accent-hover:#fdba74; --accent-soft:#2a1a0f; --accent-line:rgba(251,146,60,.35); --accent-ring:rgba(251,146,60,.35);
+        --ok:#4ade80; --ok-soft:#0f2417; --ok-line:rgba(74,222,128,.3);
+        --warn:#fbbf24; --warn-soft:rgba(251,191,36,.12);
+        --shadow-sm:0 1px 2px rgba(0,0,0,.4); --shadow-md:0 6px 18px rgba(0,0,0,.5); --shadow-lg:0 16px 40px rgba(0,0,0,.6);
+    }
 }
+html{ font-family:var(--font); line-height:1.6; -webkit-text-size-adjust:100%; }
 body{ background:var(--bg); color:var(--text); }
-a{ color:var(--primary); text-decoration:none; }
+img{ max-width:100%; display:block; }
+a{ color:var(--accent); text-decoration:none; }
 a:hover{ text-decoration:underline; }
-img{ max-width:100%; }
-.wrap{ max-width:1100px; margin:0 auto; padding:1.1rem 1.25rem 3rem; }
-.top{ display:flex; align-items:baseline; gap:.6rem; flex-wrap:wrap;
-      padding:.85rem 0; border-bottom:1px solid var(--border); margin-bottom:1.25rem; }
-.top a.brand{ font-weight:700; font-size:1.15rem; color:var(--text); }
-.top .tagline{ color:var(--text-dim); font-size:.85rem; }
-.top-link{ margin-left:auto; font-weight:600; font-size:.9rem; }
-/* Guías (prosa) */
+[hidden]{ display:none!important; }
+
+/* ---- Header fijo ---- */
+.site-header{ position:sticky; top:0; z-index:50; background:rgba(255,255,255,.85);
+    -webkit-backdrop-filter:saturate(1.6) blur(10px); backdrop-filter:saturate(1.6) blur(10px);
+    border-bottom:1px solid var(--border); }
+@media (prefers-color-scheme:dark){ .site-header{ background:rgba(17,24,39,.85); } }
+.header-inner{ max-width:var(--maxw); margin:0 auto; padding:.7rem 1.25rem;
+    display:flex; align-items:center; gap:1rem; }
+.brand{ font-weight:800; font-size:1.15rem; color:var(--text); letter-spacing:-.01em; white-space:nowrap; }
+.brand:hover{ text-decoration:none; }
+.brand .logo{ color:var(--accent); }
+.site-nav{ margin-left:auto; display:flex; gap:.25rem; align-items:center; }
+.site-nav a{ color:var(--text-dim); font-weight:600; font-size:.92rem; padding:.45rem .7rem; border-radius:8px; }
+.site-nav a:hover{ color:var(--text); background:var(--surface-2); text-decoration:none; }
+
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:1.5rem 1.25rem 3rem; }
+
+/* ---- Hero ---- */
+.hero{ text-align:center; padding:2.6rem 1rem 1rem; }
+.hero .eyebrow{ display:inline-block; font-size:.76rem; font-weight:700; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--accent); background:var(--accent-soft);
+    border:1px solid var(--accent-line); padding:.32rem .75rem; border-radius:999px; margin-bottom:1.1rem; }
+.hero h1{ font-size:clamp(1.85rem,4.5vw,2.9rem); line-height:1.1; letter-spacing:-.02em;
+    font-weight:800; max-width:18ch; margin:0 auto .85rem; }
+.hero p{ color:var(--text-dim); font-size:clamp(1rem,2.2vw,1.18rem); max-width:56ch; margin:0 auto; }
+.hero .metrics{ display:flex; flex-wrap:wrap; gap:1.6rem; justify-content:center; margin-top:1.7rem; }
+.hero .metric b{ display:block; font-size:1.55rem; font-weight:800; color:var(--text); font-variant-numeric:tabular-nums; }
+.hero .metric span{ font-size:.82rem; color:var(--text-dim); }
+
+/* ---- Tarjeta de búsqueda flotante ---- */
+.search-card{ background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    box-shadow:var(--shadow-md); padding:1.1rem; margin:1.6rem auto 0; max-width:760px; }
+.buscador{ display:flex; gap:.6rem; flex-wrap:wrap; margin:0; }
+.buscador input,.buscador select{ padding:.8rem .9rem; border:1.5px solid var(--border-strong);
+    border-radius:var(--radius-xs); background:var(--surface); color:var(--text); font-size:1rem;
+    font-family:inherit; transition:border-color .15s,box-shadow .15s; }
+.buscador input{ flex:1 1 260px; }
+.buscador select{ flex:0 1 220px; }
+.buscador input:focus,.buscador select:focus{ outline:none; border-color:var(--accent);
+    box-shadow:0 0 0 4px var(--accent-ring); }
+.buscador input::placeholder{ color:var(--text-mute); }
+.stats{ color:var(--text-dim); font-size:.85rem; margin:1rem 0 .3rem; }
+
+/* ---- Títulos ---- */
+h1{ font-size:1.7rem; line-height:1.2; font-weight:800; letter-spacing:-.01em; margin-bottom:.5rem; }
+.wrap > h2{ font-size:1.35rem; font-weight:800; letter-spacing:-.01em; margin:2.4rem 0 1rem; }
+h2{ font-size:1.3rem; font-weight:700; margin:2rem 0 .9rem; }
+p.lead{ color:var(--text-dim); margin-bottom:1.2rem; max-width:70ch; font-size:1.02rem; }
+
+/* ---- Tarjetas de categoría / guía ---- */
+.grid-cat{ display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:.85rem; }
+.cat-card{ background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-sm);
+    padding:1.05rem 1.1rem; display:block; box-shadow:var(--shadow-sm);
+    transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease; }
+.cat-card:hover{ transform:translateY(-3px); box-shadow:var(--shadow-md); border-color:var(--accent); text-decoration:none; }
+.cat-card .n{ font-weight:700; color:var(--text); margin-bottom:.2rem; }
+.cat-card .c{ color:var(--text-dim); font-size:.82rem; }
+.guia-card{ background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-sm);
+    padding:1.1rem 1.2rem; margin-bottom:.8rem; display:block; box-shadow:var(--shadow-sm);
+    transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease; }
+.guia-card:hover{ transform:translateY(-3px); box-shadow:var(--shadow-md); border-color:var(--accent); text-decoration:none; }
+.guia-card .t{ font-weight:700; color:var(--text); font-size:1.05rem; }
+.guia-card .d{ color:var(--text-dim); font-size:.9rem; margin-top:.3rem; }
+
+/* ---- Tablas de comparación ---- */
+.tabla-card{ background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    box-shadow:var(--shadow-sm); overflow:hidden; margin:1rem 0 1.6rem; }
+table{ width:100%; border-collapse:collapse; }
+.tabla-card table{ margin:0; }
+thead th{ background:var(--surface-2); color:var(--text-dim); font-weight:700; font-size:.74rem;
+    text-transform:uppercase; letter-spacing:.04em; text-align:left; padding:.75rem .9rem;
+    border-bottom:1px solid var(--border); }
+tbody td{ padding:.8rem .9rem; text-align:left; border-bottom:1px solid var(--border);
+    font-size:.94rem; vertical-align:middle; }
+tbody tr:last-child td{ border-bottom:0; }
+tbody tr{ transition:background .12s; }
+tbody tr:hover td{ background:var(--surface-2); }
+.tabla-card a{ color:var(--text); font-weight:600; }
+.tabla-card a:hover{ color:var(--accent); }
+.precio{ font-variant-numeric:tabular-nums; white-space:nowrap; font-weight:700; color:var(--accent); }
+.tienda{ display:inline-block; padding:.2rem .55rem; border-radius:999px; font-size:.74rem; font-weight:600;
+    background:var(--surface-2); color:var(--text-dim); white-space:nowrap; border:1px solid var(--border); }
+.na{ color:var(--text-mute); font-weight:400; }
+
+/* Tabla → tarjetas apiladas en móvil */
+@media (max-width:640px){
+    .tabla-card{ background:transparent; border:0; box-shadow:none; overflow:visible; }
+    .tabla-comparativa thead{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+    .tabla-comparativa,.tabla-comparativa tbody,.tabla-comparativa tr,.tabla-comparativa td{ display:block; width:100%; }
+    .tabla-comparativa tr{ background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-sm);
+        box-shadow:var(--shadow-sm); margin-bottom:.75rem; padding:.5rem .95rem; }
+    .tabla-comparativa td{ border:0!important; padding:.4rem 0; display:flex; justify-content:space-between;
+        gap:1rem; align-items:center; text-align:right; }
+    .tabla-comparativa td::before{ content:attr(data-label); color:var(--text-dim); font-size:.72rem;
+        font-weight:700; text-transform:uppercase; letter-spacing:.03em; text-align:left; }
+    .tabla-comparativa td:first-child{ font-weight:700; }
+    .tabla-comparativa tbody tr:hover td{ background:transparent; }
+}
+
+/* ---- Comparaciones destacadas ---- */
+.card{ background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-sm);
+    box-shadow:var(--shadow-sm); padding:1.1rem 1.2rem; margin-bottom:.9rem;
+    transition:box-shadow .18s ease,border-color .18s ease; }
+.card:hover{ box-shadow:var(--shadow-md); }
+.card h3{ font-size:1.05rem; font-weight:700; margin-bottom:.7rem; display:flex; align-items:center; gap:.5rem; flex-wrap:wrap; }
+.fila-tienda{ display:flex; justify-content:space-between; align-items:center; gap:1rem;
+    padding:.55rem .7rem; border-radius:var(--radius-xs); font-size:.95rem; border:1px solid transparent; }
+.fila-tienda + .fila-tienda{ margin-top:.3rem; }
+.fila-tienda.mejor{ background:var(--ok-soft); border-color:var(--ok-line); }
+.fila-tienda .ft-store{ display:flex; align-items:center; gap:.5rem; }
+.fila-tienda .precio{ color:var(--accent); }
+.fila-tienda.mejor .precio{ color:var(--ok); }
+.fila-tienda .precio:hover{ text-decoration:underline; }
+.badge-mejor{ font-size:.66rem; font-weight:700; text-transform:uppercase; letter-spacing:.04em;
+    color:var(--ok); background:var(--ok-soft); border:1px solid var(--ok-line); padding:.14rem .5rem; border-radius:999px; }
+.disp-badge{ font-size:.72rem; color:var(--warn); font-weight:600; background:var(--warn-soft);
+    padding:.16rem .55rem; border-radius:999px; }
+
+/* ---- Ficha de producto ---- */
+.ficha{ display:grid; grid-template-columns:minmax(0,340px) 1fr; gap:2rem; align-items:start; margin-top:1rem; }
+@media (max-width:700px){ .ficha{ grid-template-columns:1fr; gap:1.2rem; } }
+.ficha .foto{ background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    box-shadow:var(--shadow-sm); padding:1.2rem; text-align:center; }
+.ficha .foto img{ max-height:320px; margin:0 auto; object-fit:contain; }
+.precio-grande{ font-size:2.4rem; font-weight:800; color:var(--accent); font-variant-numeric:tabular-nums; letter-spacing:-.02em; }
+.precio-lista{ color:var(--text-mute); text-decoration:line-through; margin-left:.5rem; font-size:1.1rem; font-weight:500; }
+.btn{ display:inline-flex; align-items:center; gap:.5rem; background:var(--accent); color:#fff!important;
+    padding:.85rem 1.4rem; border-radius:var(--radius-xs); font-weight:700; font-size:1rem; margin-top:1rem;
+    box-shadow:var(--shadow-sm); transition:background .15s,transform .12s,box-shadow .15s; }
+.btn:hover{ background:var(--accent-hover); text-decoration:none; transform:translateY(-1px); box-shadow:var(--shadow-md); }
+.spark{ margin:.7rem 0; }
+.hist td{ padding:.45rem .6rem; font-size:.88rem; }
+.hist td.p{ font-variant-numeric:tabular-nums; }
+
+/* ---- Migas de pan ---- */
+nav.crumbs{ font-size:.85rem; color:var(--text-dim); margin:.25rem 0 1.2rem; }
+nav.crumbs a{ color:var(--text-dim); }
+nav.crumbs a:hover{ color:var(--accent); }
+
+/* ---- Guías (prosa) ---- */
 article.guia{ max-width:72ch; }
-article.guia p{ margin:0 0 1rem; }
-article.guia h2{ font-size:1.25rem; margin:1.8rem 0 .7rem; }
-article.guia ul,article.guia ol{ margin:0 0 1rem 1.2rem; }
-article.guia li{ margin-bottom:.35rem; }
-article.guia table{ margin:1rem 0; }
-.actualizado{ color:var(--text-dim); font-size:.85rem; margin-bottom:1.2rem; }
-.caja-precios{ background:var(--bg-alt); border:1px solid var(--border); border-radius:12px;
-               padding:1.1rem 1.2rem; margin:1.8rem 0; }
-.caja-precios h2{ margin-top:0; font-size:1.1rem; }
-.caja-precios .fila{ display:flex; justify-content:space-between; align-items:baseline;
-                     gap:1rem; padding:.5rem 0; border-bottom:1px solid var(--border); }
+article.guia p{ margin:0 0 1.1rem; }
+article.guia h2{ font-size:1.3rem; font-weight:700; margin:2rem 0 .8rem; }
+article.guia ul,article.guia ol{ margin:0 0 1.1rem 1.2rem; }
+article.guia li{ margin-bottom:.4rem; }
+article.guia table{ margin:1.2rem 0; }
+.actualizado{ color:var(--text-mute); font-size:.85rem; margin-bottom:1.4rem; }
+.caja-precios{ background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    box-shadow:var(--shadow-sm); padding:1.3rem 1.4rem; margin:2rem 0; }
+.caja-precios h2{ margin-top:0; font-size:1.15rem; }
+.caja-precios .fila{ display:flex; justify-content:space-between; align-items:baseline; gap:1rem;
+    padding:.6rem 0; border-bottom:1px solid var(--border); }
 .caja-precios .fila:last-child{ border-bottom:0; }
 .caja-precios .rango{ color:var(--text-dim); font-size:.88rem; font-variant-numeric:tabular-nums; }
-.guia-card{ background:var(--bg-alt); border:1px solid var(--border); border-radius:10px;
-            padding:1rem 1.1rem; margin-bottom:.8rem; display:block; }
-.guia-card:hover{ border-color:var(--primary); text-decoration:none; }
-.guia-card .t{ font-weight:600; color:var(--text); font-size:1.02rem; }
-.guia-card .d{ color:var(--text-dim); font-size:.9rem; margin-top:.25rem; }
-nav.crumbs{ font-size:.85rem; color:var(--text-dim); margin:.25rem 0 1.1rem; }
-nav.crumbs a{ color:var(--text-dim); }
-h1{ font-size:1.55rem; line-height:1.25; margin-bottom:.5rem; }
-h2{ font-size:1.2rem; margin:1.8rem 0 .8rem; }
-p.lead{ color:var(--text-dim); margin-bottom:1rem; max-width:70ch; }
-.grid-cat{ display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:.7rem; }
-.cat-card{ background:var(--bg-alt); border:1px solid var(--border); border-radius:10px;
-           padding:.9rem 1rem; display:block; }
-.cat-card:hover{ border-color:var(--primary); text-decoration:none; }
-.cat-card .n{ font-weight:600; color:var(--text); }
-.cat-card .c{ color:var(--text-dim); font-size:.82rem; }
-table{ width:100%; border-collapse:collapse; }
-th,td{ padding:.55rem .6rem; text-align:left; border-bottom:1px solid var(--border); font-size:.92rem; vertical-align:top; }
-th{ color:var(--text-dim); font-weight:600; font-size:.78rem; text-transform:uppercase; letter-spacing:.03em; }
-tr:hover td{ background:rgba(127,127,127,.05); }
-.precio{ font-variant-numeric:tabular-nums; white-space:nowrap; font-weight:600; }
-.tienda{ display:inline-block; padding:.1rem .5rem; border-radius:999px; font-size:.74rem;
-         background:rgba(10,92,194,.12); color:var(--primary); white-space:nowrap; }
-.na{ color:var(--text-dim); font-weight:400; }
-.buscador{ display:flex; gap:.5rem; flex-wrap:wrap; margin:.5rem 0 1rem; }
-.buscador input,.buscador select{ padding:.55rem .7rem; border:1px solid var(--border);
-    border-radius:8px; background:var(--bg-alt); color:var(--text); font-size:.95rem; }
-.buscador input{ flex:1 1 260px; }
-.stats{ color:var(--text-dim); font-size:.83rem; margin:.2rem 0 .6rem; }
-.card{ background:var(--bg-alt); border:1px solid var(--border); border-radius:10px; padding:1rem; margin-bottom:.8rem; }
-.card h3{ font-size:1rem; margin-bottom:.5rem; }
-.fila-tienda{ display:flex; justify-content:space-between; align-items:center; gap:1rem;
-              padding:.35rem .55rem; border-radius:6px; font-size:.92rem; }
-.fila-tienda.mejor{ background:rgba(26,127,55,.12); }
-.disp-badge{ font-size:.78rem; color:var(--warn); font-weight:400; }
-/* Ficha de producto */
-.ficha{ display:grid; grid-template-columns:minmax(0,300px) 1fr; gap:1.5rem; align-items:start; }
-@media (max-width:640px){ .ficha{ grid-template-columns:1fr; } }
-.ficha .foto{ background:var(--bg-alt); border:1px solid var(--border); border-radius:12px;
-              padding:1rem; text-align:center; }
-.ficha .foto img{ max-height:300px; object-fit:contain; }
-.precio-grande{ font-size:2rem; font-weight:700; font-variant-numeric:tabular-nums; }
-.precio-lista{ color:var(--text-dim); text-decoration:line-through; margin-left:.5rem; font-size:1.1rem; font-weight:400; }
-.btn{ display:inline-block; background:var(--primary); color:var(--primary-ink)!important;
-      padding:.7rem 1.2rem; border-radius:9px; font-weight:600; margin-top:.8rem; }
-.btn:hover{ text-decoration:none; filter:brightness(1.06); }
-.spark{ margin:.6rem 0; }
-.hist td{ padding:.35rem .6rem; font-size:.88rem; }
-.hist td.p{ font-variant-numeric:tabular-nums; }
-.vacio{ text-align:center; padding:3rem 1rem; color:var(--text-dim); }
-footer{ font-size:.82rem; color:var(--text-dim); margin-top:2.5rem; padding-top:1rem; border-top:1px solid var(--border); }
+
+/* ---- Varios ---- */
+.vacio{ text-align:center; padding:3rem 1rem; color:var(--text-dim); background:var(--surface);
+    border:1px dashed var(--border-strong); border-radius:var(--radius); }
+.site-footer{ border-top:1px solid var(--border); background:var(--surface); margin-top:3rem; }
+.site-footer .wrap-footer{ max-width:var(--maxw); margin:0 auto; padding:1.7rem 1.25rem; font-size:.85rem; color:var(--text-dim); }
+.site-footer a{ color:var(--text-dim); font-weight:600; }
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://preciosferreteria.cl/"}, {"@type": "ListItem", "position": 2, "name": "Pintura", "item": "https://preciosferreteria.cl/categoria/pintura/"}, {"@type": "ListItem", "position": 3, "name": "Tricolor Barniz Marino Maple   1Gl"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Product", "name": "Tricolor Barniz Marino Maple   1Gl", "category": "Pintura", "brand": {"@type": "Brand", "name": "Tricolor"}, "image": "https://cdn.shopify.com/s/files/1/0792/8099/6537/files/005002005_3_x78kniqtyxfuvpoo.jpg?v=1781818236", "offers": {"@type": "Offer", "price": 24921, "priceCurrency": "CLP", "availability": "https://schema.org/InStock", "url": "https://preciosferreteria.cl/producto/tricolor-barniz-marino-maple-1gl-dab-1010817/", "seller": {"@type": "Organization", "name": "DAB"}}}</script>
 </head>
 <body>
-<div class="wrap">
-<div class="top">
-  <a class="brand" href="https://preciosferreteria.cl/">🔩 Precios Ferretería</a>
-  <span class="tagline">Compara precios de materiales de construcción en Chile</span>
-  <a class="top-link" href="https://preciosferreteria.cl/guias/">Guías</a>
-</div>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="https://preciosferreteria.cl/"><span class="logo">🔩</span> Precios Ferretería</a>
+    <nav class="site-nav">
+      <a href="https://preciosferreteria.cl/">Inicio</a>
+      <a href="https://preciosferreteria.cl/guias/">Guías</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
 <nav class="crumbs"><a href="https://preciosferreteria.cl/">Inicio</a> › <a href="https://preciosferreteria.cl/categoria/pintura/">Pintura</a> › Tricolor Barniz Marino Maple   1Gl</nav>
 <article>
   <h1>Tricolor Barniz Marino Maple   1Gl</h1>
@@ -123,15 +233,17 @@ footer{ font-size:.82rem; color:var(--text-dim); margin-top:2.5rem; padding-top:
       
     </div>
   </div>
-  <h2>Más pintura</h2><table><tbody><tr><td><a href="https://preciosferreteria.cl/producto/lija-madera-000-180-isesa-herramientaexpress-lijmad076025/">Lija Madera 000 (180) Isesa</a></td><td><span class="tienda">Herramienta Express</span></td><td class="precio">$97</td></tr><tr><td><a href="https://preciosferreteria.cl/producto/lija-madera-gr-80-isesa-611408-madrid-06acclij0130/">LIJA MADERA GR 80 ISESA 611408</a></td><td><span class="tienda">Madrid</span></td><td class="precio">$180</td></tr><tr><td><a href="https://preciosferreteria.cl/producto/lija-madera-isesa-grano-120-611410-madrid-06acclij0133/">LIJA MADERA ISESA GRANO 120 611410</a></td><td><span class="tienda">Madrid</span></td><td class="precio">$180</td></tr><tr><td><a href="https://preciosferreteria.cl/producto/lija-madera-isesa-grano-150-611411-madrid-06acclij0135/">LIJA MADERA ISESA GRANO 150 611411</a></td><td><span class="tienda">Madrid</span></td><td class="precio">$180</td></tr><tr><td><a href="https://preciosferreteria.cl/producto/lija-madera-no-40-eldato-alij002/">LIJA MADERA Nº  40</a></td><td><span class="tienda">El Dato</span></td><td class="precio">$180</td></tr><tr><td><a href="https://preciosferreteria.cl/producto/lija-madera-no-50-eldato-alij003/">LIJA MADERA Nº  50</a></td><td><span class="tienda">El Dato</span></td><td class="precio">$180</td></tr><tr><td><a href="https://preciosferreteria.cl/producto/lija-madera-no-60-eldato-alij004/">LIJA MADERA Nº  60</a></td><td><span class="tienda">El Dato</span></td><td class="precio">$180</td></tr><tr><td><a href="https://preciosferreteria.cl/producto/lija-madera-no-80-eldato-alij005/">LIJA MADERA Nº  80</a></td><td><span class="tienda">El Dato</span></td><td class="precio">$180</td></tr></tbody></table>
+  <h2>Más pintura</h2><div class="tabla-card"><table class="tabla-comparativa"><thead><tr><th>Producto</th><th>Tienda</th><th>Precio</th></tr></thead><tbody><tr><td data-label="Producto"><a href="https://preciosferreteria.cl/producto/lija-madera-000-180-isesa-herramientaexpress-lijmad076025/">Lija Madera 000 (180) Isesa</a></td><td data-label="Tienda"><span class="tienda">Herramienta Express</span></td><td data-label="Precio" class="precio">$97</td></tr><tr><td data-label="Producto"><a href="https://preciosferreteria.cl/producto/lija-madera-gr-80-isesa-611408-madrid-06acclij0130/">LIJA MADERA GR 80 ISESA 611408</a></td><td data-label="Tienda"><span class="tienda">Madrid</span></td><td data-label="Precio" class="precio">$180</td></tr><tr><td data-label="Producto"><a href="https://preciosferreteria.cl/producto/lija-madera-isesa-grano-120-611410-madrid-06acclij0133/">LIJA MADERA ISESA GRANO 120 611410</a></td><td data-label="Tienda"><span class="tienda">Madrid</span></td><td data-label="Precio" class="precio">$180</td></tr><tr><td data-label="Producto"><a href="https://preciosferreteria.cl/producto/lija-madera-isesa-grano-150-611411-madrid-06acclij0135/">LIJA MADERA ISESA GRANO 150 611411</a></td><td data-label="Tienda"><span class="tienda">Madrid</span></td><td data-label="Precio" class="precio">$180</td></tr><tr><td data-label="Producto"><a href="https://preciosferreteria.cl/producto/lija-madera-no-40-eldato-alij002/">LIJA MADERA Nº  40</a></td><td data-label="Tienda"><span class="tienda">El Dato</span></td><td data-label="Precio" class="precio">$180</td></tr><tr><td data-label="Producto"><a href="https://preciosferreteria.cl/producto/lija-madera-no-50-eldato-alij003/">LIJA MADERA Nº  50</a></td><td data-label="Tienda"><span class="tienda">El Dato</span></td><td data-label="Precio" class="precio">$180</td></tr><tr><td data-label="Producto"><a href="https://preciosferreteria.cl/producto/lija-madera-no-60-eldato-alij004/">LIJA MADERA Nº  60</a></td><td data-label="Tienda"><span class="tienda">El Dato</span></td><td data-label="Precio" class="precio">$180</td></tr><tr><td data-label="Producto"><a href="https://preciosferreteria.cl/producto/lija-madera-no-80-eldato-alij005/">LIJA MADERA Nº  80</a></td><td data-label="Tienda"><span class="tienda">El Dato</span></td><td data-label="Precio" class="precio">$180</td></tr></tbody></table></div>
 </article>
 
-<footer>
-  <p><a href="https://preciosferreteria.cl/">Precios Ferretería</a> — comparador de precios de
-  materiales de construcción y ferretería en Chile. Precios referenciales tomados
-  automáticamente de las tiendas; verifica siempre el precio final en el sitio de
-  cada tienda. Actualizado: 2026-09-07.</p>
+</main>
+<footer class="site-footer">
+  <div class="wrap-footer">
+    <p><a href="https://preciosferreteria.cl/">Precios Ferretería</a> — comparador de precios de
+    materiales de construcción y ferretería en Chile. Precios referenciales tomados
+    automáticamente de las tiendas; verifica siempre el precio final en el sitio de
+    cada tienda. Actualizado: 2026-09-07.</p>
+  </div>
 </footer>
-</div>
 </body>
 </html>
