@@ -34,6 +34,27 @@ img{ max-width:100%; }
       padding:.85rem 0; border-bottom:1px solid var(--border); margin-bottom:1.25rem; }
 .top a.brand{ font-weight:700; font-size:1.15rem; color:var(--text); }
 .top .tagline{ color:var(--text-dim); font-size:.85rem; }
+.top-link{ margin-left:auto; font-weight:600; font-size:.9rem; }
+/* Guías (prosa) */
+article.guia{ max-width:72ch; }
+article.guia p{ margin:0 0 1rem; }
+article.guia h2{ font-size:1.25rem; margin:1.8rem 0 .7rem; }
+article.guia ul,article.guia ol{ margin:0 0 1rem 1.2rem; }
+article.guia li{ margin-bottom:.35rem; }
+article.guia table{ margin:1rem 0; }
+.actualizado{ color:var(--text-dim); font-size:.85rem; margin-bottom:1.2rem; }
+.caja-precios{ background:var(--bg-alt); border:1px solid var(--border); border-radius:12px;
+               padding:1.1rem 1.2rem; margin:1.8rem 0; }
+.caja-precios h2{ margin-top:0; font-size:1.1rem; }
+.caja-precios .fila{ display:flex; justify-content:space-between; align-items:baseline;
+                     gap:1rem; padding:.5rem 0; border-bottom:1px solid var(--border); }
+.caja-precios .fila:last-child{ border-bottom:0; }
+.caja-precios .rango{ color:var(--text-dim); font-size:.88rem; font-variant-numeric:tabular-nums; }
+.guia-card{ background:var(--bg-alt); border:1px solid var(--border); border-radius:10px;
+            padding:1rem 1.1rem; margin-bottom:.8rem; display:block; }
+.guia-card:hover{ border-color:var(--primary); text-decoration:none; }
+.guia-card .t{ font-weight:600; color:var(--text); font-size:1.02rem; }
+.guia-card .d{ color:var(--text-dim); font-size:.9rem; margin-top:.25rem; }
 nav.crumbs{ font-size:.85rem; color:var(--text-dim); margin:.25rem 0 1.1rem; }
 nav.crumbs a{ color:var(--text-dim); }
 h1{ font-size:1.55rem; line-height:1.25; margin-bottom:.5rem; }
@@ -88,6 +109,7 @@ footer{ font-size:.82rem; color:var(--text-dim); margin-top:2.5rem; padding-top:
 <div class="top">
   <a class="brand" href="https://preciosferreteria.cl/">🔩 Precios Ferretería</a>
   <span class="tagline">Compara precios de materiales de construcción en Chile</span>
+  <a class="top-link" href="https://preciosferreteria.cl/guias/">Guías</a>
 </div>
 
 <h1>Compara precios de materiales de construcción en Chile</h1>
@@ -96,7 +118,7 @@ ferretería para que veas dónde está más barato — con historial de precios.
 Elige una categoría o busca lo que necesitas.</p>
 
 <h2>Categorías</h2>
-<div class="grid-cat"><a class="cat-card" href="https://preciosferreteria.cl/categoria/tornillo/"><div class="n">Tornillo</div><div class="c">2659 productos</div></a><a class="cat-card" href="https://preciosferreteria.cl/categoria/pintura/"><div class="n">Pintura</div><div class="c">1898 productos</div></a><a class="cat-card" href="https://preciosferreteria.cl/categoria/ceramica/"><div class="n">Ceramica</div><div class="c">1304 productos</div></a><a class="cat-card" href="https://preciosferreteria.cl/categoria/pvc/"><div class="n">PVC</div><div class="c">846 productos</div></a><a class="cat-card" href="https://preciosferreteria.cl/categoria/perfil/"><div class="n">Perfil</div><div class="c">626 productos</div></a><a class="cat-card" href="https://preciosferreteria.cl/categoria/cemento/"><div class="n">Cemento</div><div class="c">592 productos</div></a><a class="cat-card" href="https://preciosferreteria.cl/categoria/arena/"><div class="n">Arena</div><div class="c">424 productos</div></a><a class="cat-card" href="https://preciosferreteria.cl/categoria/zinc/"><div class="n">Zinc</div><div class="c">313 productos</div></a><a class="cat-card" href="https://preciosferreteria.cl/categoria/clavo/"><div class="n">Clavo</div><div class="c">292 productos</div></a><a class="cat-card" href="https://preciosferreteria.cl/categoria/volcanita/"><div class="n">Volcanita</div><div class="c">289 productos</div></a><a class="cat-card" href="https://preciosferreteria.cl/categoria/ladrillo/"><div class="n">Ladrillo</div><div class="c">286 productos</div></a><a class="cat-card" href="https://preciosferreteria.cl/categoria/pino/"><div class="n">Pino</div><div class="c">237 productos</div></a><a class="cat-card" href="https://preciosferreteria.cl/categoria/mortero/"><div class="n">Mortero</div><div class="c">225 productos</div></a><a class="cat-card" href="https://preciosferreteria.cl/categoria/terciado/"><div class="n">Terciado</div><div class="c">165 productos</div></a><a class="cat-card" href="https://preciosferreteria.cl/categoria/fierro/"><div class="n">Fierro</div><div class="c">135 productos</div></a><a class="cat-card" href="https://preciosferreteria.cl/categoria/bloque/"><div class="n">Bloque</div><div class="c">133 productos</div></a><a class="cat-card" href="https://preciosferreteria.cl/categoria/osb/"><div class="n">OSB</div><div class="c">98 productos</div></a><a class="cat-card" href="https://preciosferreteria.cl/categoria/aislante/"><div class="n">Aislante</div><div class="c">89 productos</div></a><a class="cat-card" href="https://preciosferreteria.cl/categoria/gravilla/"><div class="n">Gravilla</div><div class="c">49 productos</div></a><a class="cat-card" href="https://preciosferreteria.cl/categoria/hormigon/"><div class="n">Hormigon</div><div class="c">43 productos</div></a></div>
+<div class="grid-cat"><a class="guia-card" href="https://preciosferreteria.cl/guias/cuanto-cuesta-radier-hormigon-chile/"><div class="t">¿Cuánto cuesta hacer un radier de hormigón en Chile? Guía 2026</div><div class="d">Cuánto material y cuánta plata necesitas para un radier: cemento, arena, gravilla y fierro por m². Cálculo, tips y comparación de precios entre ferreterías.</div></a><a class="guia-card" href="https://preciosferreteria.cl/guias/precio-fierro-construccion-chile/"><div class="t">Precio del fierro para construcción en Chile: guía y calibres 2026</div><div class="d">Cómo se vende el fierro de construcción en Chile, qué calibre usar y cuánto cuesta la barra. Compara precios de fierro estriado entre ferreterías.</div></a><a class="guia-card" href="https://preciosferreteria.cl/guias/cuanto-rinde-saco-cemento/"><div class="t">¿Cuánto rinde un saco de cemento? Tabla de rendimiento 2026</div><div class="d">Cuántos m² o m³ rinde un saco de cemento según el uso: estuco, radier, pega de ladrillos. Tabla de rendimiento y comparación de precios.</div></a><a class="guia-card" href="https://preciosferreteria.cl/guias/ceramica-o-porcelanato-cual-elegir-precio-m2/"><div class="t">Cerámica o porcelanato: cuál elegir y cuánto cuesta el m² (2026)</div><div class="d">Diferencias entre cerámica y porcelanato, cuál conviene por ambiente y cuánto cuesta el m² en Chile. Compara precios de cerámica entre ferreterías.</div></a></div>
 
 <h2>Buscar productos</h2>
 <div class="buscador">
@@ -111,6 +133,8 @@ Elige una categoría o busca lo que necesitas.</p>
 <div class="vacio" id="vacio" hidden>Sin resultados. Prueba con otro término.</div>
 
 <h2>Comparaciones destacadas</h2><div class="card"><h3>Cemento Bolsa 25 kg <span class="disp-badge">hasta 16% de diferencia</span></h3><div class="fila-tienda mejor"><span class="tienda">Punto Maestro</span><a class="precio" href="https://www.puntomaestro.cl/cemento-san-juan-25-kilos-64-sanj0005/p" target="_blank" rel="nofollow noopener sponsored">$4.390</a></div><div class="fila-tienda"><span class="tienda">Easy</span><a class="precio" href="https://easycl.vtexcommercestable.com.br/cemento-especial-25-kg-melon-1179179/p" target="_blank" rel="nofollow noopener sponsored">$5.090</a></div><div class="fila-tienda"><span class="tienda">Easy</span><a class="precio" href="https://easycl.vtexcommercestable.com.br/cemento-especial-25-kg-cbb-1172728/p" target="_blank" rel="nofollow noopener sponsored">$5.090</a></div></div>
+
+<h2>Guías para tu obra</h2><a class="guia-card" href="https://preciosferreteria.cl/guias/cuanto-cuesta-radier-hormigon-chile/"><div class="t">¿Cuánto cuesta hacer un radier de hormigón en Chile? Guía 2026</div><div class="d">Cuánto material y cuánta plata necesitas para un radier: cemento, arena, gravilla y fierro por m². Cálculo, tips y comparación de precios entre ferreterías.</div></a><a class="guia-card" href="https://preciosferreteria.cl/guias/precio-fierro-construccion-chile/"><div class="t">Precio del fierro para construcción en Chile: guía y calibres 2026</div><div class="d">Cómo se vende el fierro de construcción en Chile, qué calibre usar y cuánto cuesta la barra. Compara precios de fierro estriado entre ferreterías.</div></a><a class="guia-card" href="https://preciosferreteria.cl/guias/cuanto-rinde-saco-cemento/"><div class="t">¿Cuánto rinde un saco de cemento? Tabla de rendimiento 2026</div><div class="d">Cuántos m² o m³ rinde un saco de cemento según el uso: estuco, radier, pega de ladrillos. Tabla de rendimiento y comparación de precios.</div></a><a class="guia-card" href="https://preciosferreteria.cl/guias/ceramica-o-porcelanato-cual-elegir-precio-m2/"><div class="t">Cerámica o porcelanato: cuál elegir y cuánto cuesta el m² (2026)</div><div class="d">Diferencias entre cerámica y porcelanato, cuál conviene por ambiente y cuánto cuesta el m² en Chile. Compara precios de cerámica entre ferreterías.</div></a><p style="margin-top:.5rem"><a href="https://preciosferreteria.cl/guias/">Ver todas las guías →</a></p>
 
 <script>
 (function(){

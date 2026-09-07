@@ -34,6 +34,27 @@ img{ max-width:100%; }
       padding:.85rem 0; border-bottom:1px solid var(--border); margin-bottom:1.25rem; }
 .top a.brand{ font-weight:700; font-size:1.15rem; color:var(--text); }
 .top .tagline{ color:var(--text-dim); font-size:.85rem; }
+.top-link{ margin-left:auto; font-weight:600; font-size:.9rem; }
+/* Guías (prosa) */
+article.guia{ max-width:72ch; }
+article.guia p{ margin:0 0 1rem; }
+article.guia h2{ font-size:1.25rem; margin:1.8rem 0 .7rem; }
+article.guia ul,article.guia ol{ margin:0 0 1rem 1.2rem; }
+article.guia li{ margin-bottom:.35rem; }
+article.guia table{ margin:1rem 0; }
+.actualizado{ color:var(--text-dim); font-size:.85rem; margin-bottom:1.2rem; }
+.caja-precios{ background:var(--bg-alt); border:1px solid var(--border); border-radius:12px;
+               padding:1.1rem 1.2rem; margin:1.8rem 0; }
+.caja-precios h2{ margin-top:0; font-size:1.1rem; }
+.caja-precios .fila{ display:flex; justify-content:space-between; align-items:baseline;
+                     gap:1rem; padding:.5rem 0; border-bottom:1px solid var(--border); }
+.caja-precios .fila:last-child{ border-bottom:0; }
+.caja-precios .rango{ color:var(--text-dim); font-size:.88rem; font-variant-numeric:tabular-nums; }
+.guia-card{ background:var(--bg-alt); border:1px solid var(--border); border-radius:10px;
+            padding:1rem 1.1rem; margin-bottom:.8rem; display:block; }
+.guia-card:hover{ border-color:var(--primary); text-decoration:none; }
+.guia-card .t{ font-weight:600; color:var(--text); font-size:1.02rem; }
+.guia-card .d{ color:var(--text-dim); font-size:.9rem; margin-top:.25rem; }
 nav.crumbs{ font-size:.85rem; color:var(--text-dim); margin:.25rem 0 1.1rem; }
 nav.crumbs a{ color:var(--text-dim); }
 h1{ font-size:1.55rem; line-height:1.25; margin-bottom:.5rem; }
@@ -88,6 +109,7 @@ footer{ font-size:.82rem; color:var(--text-dim); margin-top:2.5rem; padding-top:
 <div class="top">
   <a class="brand" href="https://preciosferreteria.cl/">🔩 Precios Ferretería</a>
   <span class="tagline">Compara precios de materiales de construcción en Chile</span>
+  <a class="top-link" href="https://preciosferreteria.cl/guias/">Guías</a>
 </div>
 <nav class="crumbs"><a href="https://preciosferreteria.cl/">Inicio</a> › <a href="https://preciosferreteria.cl/categoria/tornillo/">Tornillo</a> › BOLSA PUNTAS 3/4″ 500 GRAMOS APROX. 1/2 KG.</nav>
 <article>

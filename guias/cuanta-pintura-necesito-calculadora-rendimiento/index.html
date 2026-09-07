@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Cuánta pintura necesito? Rendimiento por m² y precios (2026) | Precios Ferretería</title>
+<meta name="description" content="Calcula cuántos litros o galones de pintura necesitas según los m² y las manos. Rendimiento referencial y comparación de precios de pintura.">
+<link rel="canonical" href="https://preciosferreteria.cl/guias/cuanta-pintura-necesito-calculadora-rendimiento/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="¿Cuánta pintura necesito? Rendimiento por m² y precios (2026) | Precios Ferretería">
+<meta property="og:description" content="Calcula cuántos litros o galones de pintura necesitas según los m² y las manos. Rendimiento referencial y comparación de precios de pintura.">
+<meta property="og:url" content="https://preciosferreteria.cl/guias/cuanta-pintura-necesito-calculadora-rendimiento/">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%A9%3C/text%3E%3C/svg%3E">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+    --bg:#f5f5f5; --bg-alt:#fff; --text:#1f2328; --text-dim:#656d76;
+    --primary:#0a5cc2; --primary-ink:#fff; --border:#d7dbe0; --ok:#1a7f37; --warn:#b25000;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    line-height:1.5;
+}
+@media (prefers-color-scheme:dark){
+    html{ --bg:#16181c; --bg-alt:#1e2126; --text:#e8e8e8; --text-dim:#9aa0a6;
+          --primary:#4c9be8; --primary-ink:#08111d; --border:#333; --ok:#4caf50; --warn:#ffab40; }
+}
+body{ background:var(--bg); color:var(--text); }
+a{ color:var(--primary); text-decoration:none; }
+a:hover{ text-decoration:underline; }
+img{ max-width:100%; }
+.wrap{ max-width:1100px; margin:0 auto; padding:1.1rem 1.25rem 3rem; }
+.top{ display:flex; align-items:baseline; gap:.6rem; flex-wrap:wrap;
+      padding:.85rem 0; border-bottom:1px solid var(--border); margin-bottom:1.25rem; }
+.top a.brand{ font-weight:700; font-size:1.15rem; color:var(--text); }
+.top .tagline{ color:var(--text-dim); font-size:.85rem; }
+.top-link{ margin-left:auto; font-weight:600; font-size:.9rem; }
+/* Guías (prosa) */
+article.guia{ max-width:72ch; }
+article.guia p{ margin:0 0 1rem; }
+article.guia h2{ font-size:1.25rem; margin:1.8rem 0 .7rem; }
+article.guia ul,article.guia ol{ margin:0 0 1rem 1.2rem; }
+article.guia li{ margin-bottom:.35rem; }
+article.guia table{ margin:1rem 0; }
+.actualizado{ color:var(--text-dim); font-size:.85rem; margin-bottom:1.2rem; }
+.caja-precios{ background:var(--bg-alt); border:1px solid var(--border); border-radius:12px;
+               padding:1.1rem 1.2rem; margin:1.8rem 0; }
+.caja-precios h2{ margin-top:0; font-size:1.1rem; }
+.caja-precios .fila{ display:flex; justify-content:space-between; align-items:baseline;
+                     gap:1rem; padding:.5rem 0; border-bottom:1px solid var(--border); }
+.caja-precios .fila:last-child{ border-bottom:0; }
+.caja-precios .rango{ color:var(--text-dim); font-size:.88rem; font-variant-numeric:tabular-nums; }
+.guia-card{ background:var(--bg-alt); border:1px solid var(--border); border-radius:10px;
+            padding:1rem 1.1rem; margin-bottom:.8rem; display:block; }
+.guia-card:hover{ border-color:var(--primary); text-decoration:none; }
+.guia-card .t{ font-weight:600; color:var(--text); font-size:1.02rem; }
+.guia-card .d{ color:var(--text-dim); font-size:.9rem; margin-top:.25rem; }
+nav.crumbs{ font-size:.85rem; color:var(--text-dim); margin:.25rem 0 1.1rem; }
+nav.crumbs a{ color:var(--text-dim); }
+h1{ font-size:1.55rem; line-height:1.25; margin-bottom:.5rem; }
+h2{ font-size:1.2rem; margin:1.8rem 0 .8rem; }
+p.lead{ color:var(--text-dim); margin-bottom:1rem; max-width:70ch; }
+.grid-cat{ display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:.7rem; }
+.cat-card{ background:var(--bg-alt); border:1px solid var(--border); border-radius:10px;
+           padding:.9rem 1rem; display:block; }
+.cat-card:hover{ border-color:var(--primary); text-decoration:none; }
+.cat-card .n{ font-weight:600; color:var(--text); }
+.cat-card .c{ color:var(--text-dim); font-size:.82rem; }
+table{ width:100%; border-collapse:collapse; }
+th,td{ padding:.55rem .6rem; text-align:left; border-bottom:1px solid var(--border); font-size:.92rem; vertical-align:top; }
+th{ color:var(--text-dim); font-weight:600; font-size:.78rem; text-transform:uppercase; letter-spacing:.03em; }
+tr:hover td{ background:rgba(127,127,127,.05); }
+.precio{ font-variant-numeric:tabular-nums; white-space:nowrap; font-weight:600; }
+.tienda{ display:inline-block; padding:.1rem .5rem; border-radius:999px; font-size:.74rem;
+         background:rgba(10,92,194,.12); color:var(--primary); white-space:nowrap; }
+.na{ color:var(--text-dim); font-weight:400; }
+.buscador{ display:flex; gap:.5rem; flex-wrap:wrap; margin:.5rem 0 1rem; }
+.buscador input,.buscador select{ padding:.55rem .7rem; border:1px solid var(--border);
+    border-radius:8px; background:var(--bg-alt); color:var(--text); font-size:.95rem; }
+.buscador input{ flex:1 1 260px; }
+.stats{ color:var(--text-dim); font-size:.83rem; margin:.2rem 0 .6rem; }
+.card{ background:var(--bg-alt); border:1px solid var(--border); border-radius:10px; padding:1rem; margin-bottom:.8rem; }
+.card h3{ font-size:1rem; margin-bottom:.5rem; }
+.fila-tienda{ display:flex; justify-content:space-between; align-items:center; gap:1rem;
+              padding:.35rem .55rem; border-radius:6px; font-size:.92rem; }
+.fila-tienda.mejor{ background:rgba(26,127,55,.12); }
+.disp-badge{ font-size:.78rem; color:var(--warn); font-weight:400; }
+/* Ficha de producto */
+.ficha{ display:grid; grid-template-columns:minmax(0,300px) 1fr; gap:1.5rem; align-items:start; }
+@media (max-width:640px){ .ficha{ grid-template-columns:1fr; } }
+.ficha .foto{ background:var(--bg-alt); border:1px solid var(--border); border-radius:12px;
+              padding:1rem; text-align:center; }
+.ficha .foto img{ max-height:300px; object-fit:contain; }
+.precio-grande{ font-size:2rem; font-weight:700; font-variant-numeric:tabular-nums; }
+.precio-lista{ color:var(--text-dim); text-decoration:line-through; margin-left:.5rem; font-size:1.1rem; font-weight:400; }
+.btn{ display:inline-block; background:var(--primary); color:var(--primary-ink)!important;
+      padding:.7rem 1.2rem; border-radius:9px; font-weight:600; margin-top:.8rem; }
+.btn:hover{ text-decoration:none; filter:brightness(1.06); }
+.spark{ margin:.6rem 0; }
+.hist td{ padding:.35rem .6rem; font-size:.88rem; }
+.hist td.p{ font-variant-numeric:tabular-nums; }
+.vacio{ text-align:center; padding:3rem 1rem; color:var(--text-dim); }
+footer{ font-size:.82rem; color:var(--text-dim); margin-top:2.5rem; padding-top:1rem; border-top:1px solid var(--border); }
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://preciosferreteria.cl/"}, {"@type": "ListItem", "position": 2, "name": "Guías", "item": "https://preciosferreteria.cl/guias/"}, {"@type": "ListItem", "position": 3, "name": "¿Cuánta pintura necesito? Rendimiento por m² y precios (2026"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "¿Cuánta pintura necesito? Rendimiento por m² y precios (2026)", "description": "Calcula cuántos litros o galones de pintura necesitas según los m² y las manos. Rendimiento referencial y comparación de precios de pintura.", "inLanguage": "es-CL", "dateModified": "2026-09-07", "author": {"@type": "Organization", "name": "Precios Ferretería"}, "publisher": {"@type": "Organization", "name": "Precios Ferretería"}, "mainEntityOfPage": "https://preciosferreteria.cl/guias/cuanta-pintura-necesito-calculadora-rendimiento/"}</script>
+</head>
+<body>
+<div class="wrap">
+<div class="top">
+  <a class="brand" href="https://preciosferreteria.cl/">🔩 Precios Ferretería</a>
+  <span class="tagline">Compara precios de materiales de construcción en Chile</span>
+  <a class="top-link" href="https://preciosferreteria.cl/guias/">Guías</a>
+</div>
+<nav class="crumbs"><a href="https://preciosferreteria.cl/">Inicio</a> › <a href="https://preciosferreteria.cl/guias/">Guías</a> › ¿Cuánta pintura necesito? Rendimiento por m² y precios (2026</nav>
+<article class="guia">
+  <h1>¿Cuánta pintura necesito? Rendimiento por m² y precios (2026)</h1>
+  <p class="actualizado">Actualizado: 2026-09</p>
+  
+<p>Comprar pintura de menos significa una segunda vuelta a la tienda a mitad del
+trabajo (y arriesgarte a que el tono no calce exacto); comprar de más es plata
+botada en tarros que se secan en la bodega. Con un cálculo simple de rendimiento
+puedes acertar. Aquí te mostramos cómo estimar los litros y comparar precios.</p>
+
+<h2>El dato clave: el rendimiento</h2>
+<p>La mayoría de las pinturas de muro (látex) rinden del orden de
+<strong>10 a 12 m² por litro y por mano</strong> sobre una superficie lisa y ya
+preparada. Como casi siempre se aplican <strong>dos manos</strong>, el rendimiento
+efectivo baja a unos <strong>5 a 6 m² por litro</strong>. Revisa siempre el
+rendimiento que indica el envase, porque varía según el tipo y la marca.</p>
+
+<h2>Cómo calcular tus litros</h2>
+<ol>
+  <li><strong>Mide la superficie:</strong> alto × ancho de cada muro, y suma. Para
+  una pieza, una regla rápida es multiplicar los m² de piso por ~3 para estimar los
+  m² de muro.</li>
+  <li><strong>Descuenta puertas y ventanas</strong> si son grandes.</li>
+  <li><strong>Divide por el rendimiento efectivo:</strong> m² totales ÷ 5 = litros
+  aproximados para dos manos.</li>
+</ol>
+<p>Ejemplo: una pieza con <strong>40 m² de muro</strong> a dos manos necesita del
+orden de <strong>8 litros</strong> de pintura. En formatos, eso es cercano a un
+galón (3,785 L) más un cuarto adicional, o directamente un envase mayor.</p>
+
+<h2>Formatos y cómo comparar</h2>
+<table>
+  <thead><tr><th>Formato</th><th>Equivalencia aprox.</th></tr></thead>
+  <tbody>
+    <tr><td>Cuarto de galón</td><td>~1 litro</td></tr>
+    <tr><td>Galón</td><td>~3,8 litros</td></tr>
+    <tr><td>Tineta / tambor</td><td>varios galones (más barato por litro)</td></tr>
+  </tbody>
+</table>
+<p>Para comparar precios de forma justa, mira el <strong>precio por litro</strong>,
+no por envase: la tineta casi siempre sale más barata por litro que el galón. Abajo
+tienes precios de pintura actualizados entre las tiendas que seguimos.</p>
+
+<h2>Tips para que rinda</h2>
+<ul>
+  <li><strong>Prepara la superficie:</strong> una pared sellada y lisa absorbe menos
+  y rinde más que una porosa.</li>
+  <li><strong>No diluyas de más:</strong> pierdes cubrimiento y terminas dando una
+  mano extra.</li>
+  <li><strong>Compra todo de una:</strong> el mismo color en distintos lotes puede
+  variar levemente de tono.</li>
+</ul>
+
+  <div class="caja-precios"><h2>Precios actuales</h2><p class="rango" style="margin:.2rem 0 .6rem">Comparados entre las ferreterías que seguimos — haz clic para ver el detalle por tienda.</p><a class="fila" style="text-decoration:none;color:inherit" href="https://preciosferreteria.cl/categoria/pintura/"><span>Pintura <span class="rango">(1898 productos)</span></span><span class="rango">desde $97</span></a></div>
+</article>
+<h2>Otras guías</h2><a class="guia-card" href="https://preciosferreteria.cl/guias/cuanto-cuesta-radier-hormigon-chile/"><div class="t">¿Cuánto cuesta hacer un radier de hormigón en Chile? Guía 2026</div></a><a class="guia-card" href="https://preciosferreteria.cl/guias/precio-fierro-construccion-chile/"><div class="t">Precio del fierro para construcción en Chile: guía y calibres 2026</div></a><a class="guia-card" href="https://preciosferreteria.cl/guias/cuanto-rinde-saco-cemento/"><div class="t">¿Cuánto rinde un saco de cemento? Tabla de rendimiento 2026</div></a>
+
+<footer>
+  <p><a href="https://preciosferreteria.cl/">Precios Ferretería</a> — comparador de precios de
+  materiales de construcción y ferretería en Chile. Precios referenciales tomados
+  automáticamente de las tiendas; verifica siempre el precio final en el sitio de
+  cada tienda. Actualizado: 2026-09-07.</p>
+</footer>
+</div>
+</body>
+</html>
