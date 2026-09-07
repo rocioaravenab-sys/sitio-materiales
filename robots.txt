@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://preciosferreteria.cl/sitemap.xml

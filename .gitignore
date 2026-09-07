@@ -8,3 +8,15 @@
 !img/
 !img/*.png
 !img/*.jpg
+# Sitio multi-página SEO: portada + páginas generadas + metadatos de indexación.
+# Sigue siendo allowlist: .db/.env/.log/.py NO se re-incluyen (y la auditoría
+# pre-push en materiales/web.py aborta si alguno se colara).
+!sitemap.xml
+!robots.txt
+!CNAME
+!categoria/
+!categoria/**
+!producto/
+!producto/**
+!assets/
+!assets/**
