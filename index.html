@@ -258,7 +258,9 @@ article.guia table{ margin:1.2rem 0; }
 
 <script>
 (function(){
-  var BASE="https://preciosferreteria.cl";
+  // Mismo origen (root-relativo): el buscador funciona por http o https y en
+  // cualquier despliegue, sin depender de que el certificado del dominio esté listo.
+  var BASE='';
   var elQ=document.getElementById('q'),elR=document.getElementById('rubro'),
       elRes=document.getElementById('resultados'),elStats=document.getElementById('stats'),
       elVac=document.getElementById('vacio');
@@ -294,7 +296,7 @@ article.guia table{ margin:1.2rem 0; }
     <p><a href="https://preciosferreteria.cl/">Precios Ferretería</a> — comparador de precios de
     materiales de construcción y ferretería en Chile. Precios referenciales tomados
     automáticamente de las tiendas; verifica siempre el precio final en el sitio de
-    cada tienda. Actualizado: 2026-09-07.</p>
+    cada tienda. Actualizado: 2026-09-08.</p>
   </div>
 </footer>
 </body>
