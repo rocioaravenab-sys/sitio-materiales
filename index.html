@@ -13,10 +13,12 @@
 <meta property="og:url" content="https://preciosferreteria.cl/">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%A9%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@500;600;700&display=swap">
+<link rel="preload" as="font" type="font/woff2" href="https://preciosferreteria.cl/assets/fonts/inter-latin.woff2" crossorigin>
 <style>
+@font-face{ font-family:"Inter"; font-style:normal; font-display:swap; font-weight:400 800;
+    src:url("/assets/fonts/inter-latin.woff2") format("woff2"); }
+@font-face{ font-family:"Geist"; font-style:normal; font-display:swap; font-weight:400 700;
+    src:url("/assets/fonts/geist-latin.woff2") format("woff2"); }
 *{ box-sizing:border-box; margin:0; padding:0; }
 :root{
     --bg:#ffffff; --surface:#ffffff; --surface-2:#f3f4f6;
@@ -106,7 +108,30 @@ a:hover{ text-decoration:underline; }
     .sb-select{ width:100%; border-top:1px solid var(--border); }
     .sb-select select{ width:100%; }
 }
-.stats{ color:var(--text-dim); font-size:.85rem; margin:1rem 0 .3rem; }
+.stats{ color:var(--text-dim); font-size:.85rem; margin:0; }
+
+/* ---- Orden + paginación ---- */
+.resultados-top{ display:flex; align-items:center; justify-content:space-between; gap:1rem;
+    flex-wrap:wrap; margin:1rem 0 .3rem; }
+.listado-top{ display:flex; justify-content:flex-end; margin:.6rem 0 .2rem; }
+.orden{ display:inline-flex; align-items:center; gap:.5rem; font-size:.86rem; color:var(--text-dim); }
+.orden label{ white-space:nowrap; }
+.sel-wrap{ position:relative; display:inline-flex; align-items:center; }
+.sel-wrap select{ appearance:none; -webkit-appearance:none; background:var(--surface);
+    border:1px solid var(--border-strong); border-radius:var(--radius-xs); color:var(--text);
+    font-family:inherit; font-size:.9rem; font-weight:600; padding:.5rem 2rem .5rem .8rem; cursor:pointer;
+    transition:border-color .15s,box-shadow .15s; }
+.sel-wrap select:focus{ outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-ring); }
+.sel-wrap .sb-chev{ position:absolute; right:.6rem; color:var(--text-dim); pointer-events:none; display:flex; }
+.sel-wrap .sb-chev .ic{ width:1rem; height:1rem; }
+.paginacion{ display:flex; align-items:center; justify-content:center; gap:1rem; margin:1.3rem 0 .5rem; flex-wrap:wrap; }
+.pg-btn{ background:var(--surface); border:1px solid var(--border-strong); color:var(--text);
+    font-family:inherit; font-size:.9rem; font-weight:600; padding:.55rem 1.05rem; border-radius:var(--radius-xs);
+    cursor:pointer; transition:background .12s,border-color .12s,color .12s,transform .1s; }
+.pg-btn:hover:not(:disabled){ border-color:var(--accent); color:var(--accent); }
+.pg-btn:active:not(:disabled){ transform:translateY(1px); }
+.pg-btn:disabled{ opacity:.45; cursor:not-allowed; }
+.pg-info{ color:var(--text-dim); font-size:.88rem; font-variant-numeric:tabular-nums; }
 
 /* ---- Títulos ---- */
 h1{ font-size:1.7rem; line-height:1.2; font-weight:800; letter-spacing:-.01em; margin-bottom:.5rem; }
@@ -278,7 +303,21 @@ article.guia table{ margin:1.2rem 0; }
     <span class="sb-chev"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></span>
   </div>
 </section>
-<p class="stats" id="stats">Cargando buscador…</p>
+<div class="resultados-top">
+  <p class="stats" id="stats">Cargando buscador…</p>
+  <div class="orden" id="orden-wrap" hidden>
+    <label for="orden">Ordenar por</label>
+    <div class="sel-wrap">
+      <select id="orden">
+        <option value="precio-asc">Precio: menor a mayor</option>
+        <option value="precio-desc">Precio: mayor a menor</option>
+        <option value="tienda">Tienda (A–Z)</option>
+        <option value="nombre">Nombre (A–Z)</option>
+      </select>
+      <span class="sb-chev"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></span>
+    </div>
+  </div>
+</div>
 <div class="tabla-card">
 <table class="tabla-comparativa">
 <thead><tr><th>Producto</th><th>Tienda</th><th>Precio</th></tr></thead>
@@ -286,6 +325,11 @@ article.guia table{ margin:1.2rem 0; }
 </table>
 </div>
 <div class="vacio" id="vacio" hidden>Sin resultados. Prueba con otro término.</div>
+<nav class="paginacion" id="pag" aria-label="Paginación" hidden>
+  <button type="button" id="prev" class="pg-btn" disabled>← Anterior</button>
+  <span id="pag-info" class="pg-info"></span>
+  <button type="button" id="next" class="pg-btn" disabled>Siguiente →</button>
+</nav>
 
 <h2>Explora por categoría</h2>
 <div class="cat-pills"><a class="cat-pill" href="https://preciosferreteria.cl/categoria/tornillo/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5 9.5 5v2.5L12 9l2.5-1.5V5z"/><line x1="12" y1="9" x2="12" y2="21"/><line x1="10.5" y1="12" x2="13" y2="12.6"/><line x1="10.5" y1="15" x2="13" y2="15.6"/><line x1="10.5" y1="18" x2="13" y2="18.6"/></svg><span class="n">Tornillo</span><span class="c">2659</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/pintura/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h14l-1.4 12a2 2 0 0 1-2 1.8H8.4a2 2 0 0 1-2-1.8z"/><path d="M8 7a4 4 0 0 1 8 0"/></svg><span class="n">Pintura</span><span class="c">1898</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/ceramica/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="1.5"/><line x1="12" y1="3.5" x2="12" y2="20.5"/><line x1="3.5" y1="12" x2="20.5" y2="12"/></svg><span class="n">Ceramica</span><span class="c">1304</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/pvc/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8.5" width="18" height="7" rx="3.5"/><line x1="7" y1="8.7" x2="7" y2="15.3"/></svg><span class="n">PVC</span><span class="c">846</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/perfil/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="6" y1="4.5" x2="18" y2="4.5"/><line x1="6" y1="19.5" x2="18" y2="19.5"/><line x1="12" y1="4.5" x2="12" y2="19.5"/></svg><span class="n">Perfil</span><span class="c">626</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/cemento/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3h8v2.5a5 5 0 0 1 3 4.6V18a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3v-7.9a5 5 0 0 1 3-4.6z"/><line x1="9.5" y1="11.5" x2="14.5" y2="11.5"/></svg><span class="n">Cemento</span><span class="c">592</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/arena/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5 3.5 19h17z"/></svg><span class="n">Arena</span><span class="c">424</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/zinc/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 15c1.5-3 3-3 4.5 0s3 3 4.5 0 3-3 4.5 0 3 3 4.5 0"/><path d="M3 10.5c1.5-3 3-3 4.5 0"/></svg><span class="n">Zinc</span><span class="c">313</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/clavo/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5 9.5 5v2.5L12 9l2.5-1.5V5z"/><line x1="12" y1="9" x2="12" y2="21"/><line x1="10.5" y1="12" x2="13" y2="12.6"/><line x1="10.5" y1="15" x2="13" y2="15.6"/><line x1="10.5" y1="18" x2="13" y2="18.6"/></svg><span class="n">Clavo</span><span class="c">292</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/volcanita/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="1.5"/><line x1="3.5" y1="9.7" x2="20.5" y2="9.7"/><line x1="3.5" y1="14.3" x2="20.5" y2="14.3"/></svg><span class="n">Volcanita</span><span class="c">289</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/ladrillo/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="1"/><line x1="3.5" y1="12" x2="20.5" y2="12"/><line x1="12" y1="4.5" x2="12" y2="12"/><line x1="7.5" y1="12" x2="7.5" y2="19.5"/><line x1="16.5" y1="12" x2="16.5" y2="19.5"/></svg><span class="n">Ladrillo</span><span class="c">286</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/pino/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 7 10h3l-4 6h4l-1 5h6l-1-5h4l-4-6h3z"/></svg><span class="n">Pino</span><span class="c">237</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/mortero/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3h8v2.5a5 5 0 0 1 3 4.6V18a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3v-7.9a5 5 0 0 1 3-4.6z"/><line x1="9.5" y1="11.5" x2="14.5" y2="11.5"/></svg><span class="n">Mortero</span><span class="c">225</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/terciado/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="1.5"/><line x1="3.5" y1="9.7" x2="20.5" y2="9.7"/><line x1="3.5" y1="14.3" x2="20.5" y2="14.3"/></svg><span class="n">Terciado</span><span class="c">165</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/fierro/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4.5" y1="19.5" x2="19.5" y2="4.5"/><line x1="7.5" y1="11.5" x2="9.5" y2="13.5"/><line x1="10.5" y1="8.5" x2="12.5" y2="10.5"/><line x1="13.5" y1="5.5" x2="15.5" y2="7.5"/></svg><span class="n">Fierro</span><span class="c">135</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/bloque/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="1"/><line x1="3.5" y1="12" x2="20.5" y2="12"/><line x1="12" y1="4.5" x2="12" y2="12"/><line x1="7.5" y1="12" x2="7.5" y2="19.5"/><line x1="16.5" y1="12" x2="16.5" y2="19.5"/></svg><span class="n">Bloque</span><span class="c">133</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/osb/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="1.5"/><line x1="3.5" y1="9.7" x2="20.5" y2="9.7"/><line x1="3.5" y1="14.3" x2="20.5" y2="14.3"/></svg><span class="n">OSB</span><span class="c">98</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/aislante/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="1.5"/><line x1="3.5" y1="9.7" x2="20.5" y2="9.7"/><line x1="3.5" y1="14.3" x2="20.5" y2="14.3"/></svg><span class="n">Aislante</span><span class="c">89</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/gravilla/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5 3.5 19h17z"/></svg><span class="n">Gravilla</span><span class="c">49</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/hormigon/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3h8v2.5a5 5 0 0 1 3 4.6V18a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3v-7.9a5 5 0 0 1 3-4.6z"/><line x1="9.5" y1="11.5" x2="14.5" y2="11.5"/></svg><span class="n">Hormigon</span><span class="c">43</span></a></div>
@@ -298,32 +342,57 @@ article.guia table{ margin:1.2rem 0; }
 (function(){
   // Mismo origen (root-relativo): el buscador funciona por http o https y en
   // cualquier despliegue, sin depender de que el certificado del dominio esté listo.
-  var BASE='';
+  var PER=20,page=1,orden='precio-asc',filtered=[];
   var elQ=document.getElementById('q'),elR=document.getElementById('rubro'),
       elRes=document.getElementById('resultados'),elStats=document.getElementById('stats'),
-      elVac=document.getElementById('vacio');
+      elVac=document.getElementById('vacio'),elSel=document.getElementById('orden'),
+      elOrdenWrap=document.getElementById('orden-wrap'),elPag=document.getElementById('pag'),
+      elPrev=document.getElementById('prev'),elNext=document.getElementById('next'),
+      elInfo=document.getElementById('pag-info');
   var DATA=[],IDX=[];
   function sa(s){return (s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
   function fp(n){return n==null?'—':'$'+n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,'.');}
-  function render(){
-    var q=sa(elQ.value.trim()),r=elR.value,terms=q?q.split(/\s+/):[],out=[];
+  function esc(s){return (s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function cmp(a,b){
+    if(orden==='precio-asc')return (a['$']==null)-(b['$']==null)||a['$']-b['$'];
+    if(orden==='precio-desc')return (a['$']==null)-(b['$']==null)||b['$']-a['$'];
+    if(orden==='tienda')return a.p.localeCompare(b.p)||((a['$']||0)-(b['$']||0));
+    return a.n.localeCompare(b.n);
+  }
+  function filtrar(){
+    var q=sa(elQ.value.trim()),r=elR.value,terms=q?q.split(/\s+/):[];
+    filtered=[];
     for(var i=0;i<DATA.length;i++){
       var p=DATA[i];
       if(r&&p.r!==r)continue;
       if(terms.length){var t=IDX[i],ok=true;for(var k=0;k<terms.length;k++){if(t.indexOf(terms[k])===-1){ok=false;break;}}if(!ok)continue;}
-      out.push(p); if(out.length>=200)break;
+      filtered.push(p);
     }
-    elStats.textContent=out.length+(out.length===200?'+':'')+' resultado'+(out.length===1?'':'s')+' de '+DATA.length;
-    elRes.innerHTML=out.map(function(p){
-      return '<tr><td data-label="Producto"><a href="'+BASE+'/producto/'+p.s+'/">'+p.n+'</a></td>'+
-             '<td data-label="Tienda"><span class="tienda">'+p.p+'</span></td>'+
+    page=1; render();
+  }
+  function render(){
+    filtered.sort(cmp);
+    var total=filtered.length,pages=Math.max(1,Math.ceil(total/PER));
+    if(page>pages)page=pages; if(page<1)page=1;
+    var ini=(page-1)*PER,rows=filtered.slice(ini,ini+PER);
+    elStats.textContent=total+' resultado'+(total===1?'':'s')+' de '+DATA.length;
+    elRes.innerHTML=rows.map(function(p){
+      return '<tr><td data-label="Producto"><a href="/producto/'+p.s+'/">'+esc(p.n)+'</a></td>'+
+             '<td data-label="Tienda"><span class="tienda">'+esc(p.p)+'</span></td>'+
              '<td data-label="Precio" class="precio">'+fp(p['$'])+'</td></tr>';
     }).join('');
-    elVac.hidden=out.length>0;
+    elVac.hidden=total>0;
+    elOrdenWrap.hidden=total===0;
+    elPag.hidden=pages<=1;
+    elInfo.textContent='Página '+page+' de '+pages;
+    elPrev.disabled=page<=1; elNext.disabled=page>=pages;
   }
-  fetch(BASE+'/assets/buscador.json').then(function(r){return r.json();}).then(function(d){
+  elPrev.addEventListener('click',function(){page--;render();});
+  elNext.addEventListener('click',function(){page++;render();});
+  elSel.addEventListener('change',function(){orden=elSel.value;page=1;render();});
+  fetch('/assets/buscador.json').then(function(r){return r.json();}).then(function(d){
     DATA=d; IDX=DATA.map(function(p){return sa(p.n+' '+p.m);});
-    elQ.addEventListener('input',render); elR.addEventListener('change',render); render();
+    elQ.addEventListener('input',filtrar); elR.addEventListener('change',filtrar); filtrar();
   }).catch(function(){elStats.textContent='No se pudo cargar el buscador.';});
 })();
 </script>

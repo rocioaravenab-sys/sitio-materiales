@@ -13,10 +13,12 @@
 <meta property="og:url" content="https://preciosferreteria.cl/producto/juego-de-llaves-punta-corona-chicharra-8-piezas-yofe-color-p-easy-630016/">
 <meta property="og:image" content="https://easycl.vteximg.com.br/arquivos/ids/5658658/SKU-11382-4-png.png?v=639208234344600000">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%A9%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist:wght@500;600;700&display=swap">
+<link rel="preload" as="font" type="font/woff2" href="https://preciosferreteria.cl/assets/fonts/inter-latin.woff2" crossorigin>
 <style>
+@font-face{ font-family:"Inter"; font-style:normal; font-display:swap; font-weight:400 800;
+    src:url("/assets/fonts/inter-latin.woff2") format("woff2"); }
+@font-face{ font-family:"Geist"; font-style:normal; font-display:swap; font-weight:400 700;
+    src:url("/assets/fonts/geist-latin.woff2") format("woff2"); }
 *{ box-sizing:border-box; margin:0; padding:0; }
 :root{
     --bg:#ffffff; --surface:#ffffff; --surface-2:#f3f4f6;
@@ -106,7 +108,30 @@ a:hover{ text-decoration:underline; }
     .sb-select{ width:100%; border-top:1px solid var(--border); }
     .sb-select select{ width:100%; }
 }
-.stats{ color:var(--text-dim); font-size:.85rem; margin:1rem 0 .3rem; }
+.stats{ color:var(--text-dim); font-size:.85rem; margin:0; }
+
+/* ---- Orden + paginación ---- */
+.resultados-top{ display:flex; align-items:center; justify-content:space-between; gap:1rem;
+    flex-wrap:wrap; margin:1rem 0 .3rem; }
+.listado-top{ display:flex; justify-content:flex-end; margin:.6rem 0 .2rem; }
+.orden{ display:inline-flex; align-items:center; gap:.5rem; font-size:.86rem; color:var(--text-dim); }
+.orden label{ white-space:nowrap; }
+.sel-wrap{ position:relative; display:inline-flex; align-items:center; }
+.sel-wrap select{ appearance:none; -webkit-appearance:none; background:var(--surface);
+    border:1px solid var(--border-strong); border-radius:var(--radius-xs); color:var(--text);
+    font-family:inherit; font-size:.9rem; font-weight:600; padding:.5rem 2rem .5rem .8rem; cursor:pointer;
+    transition:border-color .15s,box-shadow .15s; }
+.sel-wrap select:focus{ outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-ring); }
+.sel-wrap .sb-chev{ position:absolute; right:.6rem; color:var(--text-dim); pointer-events:none; display:flex; }
+.sel-wrap .sb-chev .ic{ width:1rem; height:1rem; }
+.paginacion{ display:flex; align-items:center; justify-content:center; gap:1rem; margin:1.3rem 0 .5rem; flex-wrap:wrap; }
+.pg-btn{ background:var(--surface); border:1px solid var(--border-strong); color:var(--text);
+    font-family:inherit; font-size:.9rem; font-weight:600; padding:.55rem 1.05rem; border-radius:var(--radius-xs);
+    cursor:pointer; transition:background .12s,border-color .12s,color .12s,transform .1s; }
+.pg-btn:hover:not(:disabled){ border-color:var(--accent); color:var(--accent); }
+.pg-btn:active:not(:disabled){ transform:translateY(1px); }
+.pg-btn:disabled{ opacity:.45; cursor:not-allowed; }
+.pg-info{ color:var(--text-dim); font-size:.88rem; font-variant-numeric:tabular-nums; }
 
 /* ---- Títulos ---- */
 h1{ font-size:1.7rem; line-height:1.2; font-weight:800; letter-spacing:-.01em; margin-bottom:.5rem; }
