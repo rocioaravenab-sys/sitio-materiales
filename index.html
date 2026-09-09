@@ -22,30 +22,32 @@
     src:url("/assets/fonts/geist-latin.woff2") format("woff2"); }
 *{ box-sizing:border-box; margin:0; padding:0; }
 :root{
-    --bg:#ffffff; --surface:#ffffff; --surface-2:#f3f4f6;
-    --text:#111827; --text-dim:#6b7280; --text-mute:#9ca3af;
-    --border:#e5e7eb; --border-strong:#d1d5db;
-    --accent:#ea580c; --accent-hover:#c2410c; --accent-soft:#fff7ed; --accent-line:rgba(234,88,12,.28); --accent-ring:rgba(234,88,12,.28);
+    --bg:#f5f5f4; --surface:#ffffff; --surface-2:#f0efed;
+    --text:#1c1917; --text-dim:#78716c; --text-mute:#a8a29e;
+    --border:#e7e5e4; --border-strong:#d6d3d1;
+    --accent:#ea580c; --accent-hover:#c2410c; --accent-soft:#fff2e9; --accent-line:rgba(234,88,12,.28); --accent-ring:rgba(234,88,12,.28);
+    --black:#171412; --black-2:#26211d; --rust:#9a3412; --rust-soft:#f7e7de; --steel:#57534e;
     --ok:#0d9488; --mint-bg:#d1fae5; --mint-text:#0f766e; --mint-line:rgba(13,148,136,.28);
     --warn:#b45309; --warn-soft:rgba(180,83,9,.1);
-    --pill-bg:#f9fafb; --pill-border:#e5e7eb; --pill-text:#374151;
-    --shadow-sm:0 1px 2px rgba(15,23,42,.04),0 1px 3px rgba(15,23,42,.06);
-    --shadow-md:0 6px 16px rgba(15,23,42,.08);
-    --shadow-lg:0 16px 40px rgba(15,23,42,.12);
-    --radius:16px; --radius-sm:12px; --radius-xs:9px; --radius-pill:999px;
+    --pill-bg:#f9fafb; --pill-border:#e7e5e4; --pill-text:#44403c;
+    --shadow-sm:0 1px 2px rgba(28,25,23,.04),0 1px 3px rgba(28,25,23,.06);
+    --shadow-md:0 6px 16px rgba(28,25,23,.08);
+    --shadow-lg:0 16px 40px rgba(28,25,23,.12);
+    --radius:14px; --radius-sm:10px; --radius-xs:9px; --radius-pill:999px;
     --maxw:1120px;
     --font:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     --font-num:"Geist","Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
 }
 @media (prefers-color-scheme:dark){
     :root{
-        --bg:#0b1120; --surface:#111827; --surface-2:#1e293b;
-        --text:#f1f5f9; --text-dim:#94a3b8; --text-mute:#64748b;
-        --border:#1e293b; --border-strong:#334155;
-        --accent:#fb923c; --accent-hover:#fdba74; --accent-soft:#2a1a0f; --accent-line:rgba(251,146,60,.35); --accent-ring:rgba(251,146,60,.35);
+        --bg:#12100e; --surface:#1c1917; --surface-2:#292524;
+        --text:#f5f5f4; --text-dim:#a8a29e; --text-mute:#78716c;
+        --border:#292524; --border-strong:#44403c;
+        --accent:#fb7546; --accent-hover:#fda07a; --accent-soft:#2a1a0f; --accent-line:rgba(251,117,70,.35); --accent-ring:rgba(251,117,70,.35);
+        --black:#0b0a09; --black-2:#1c1917; --rust:#e07a4f; --rust-soft:#2a1a0f; --steel:#a8a29e;
         --ok:#2dd4bf; --mint-bg:#0f2f2b; --mint-text:#5eead4; --mint-line:rgba(45,212,191,.3);
         --warn:#fbbf24; --warn-soft:rgba(251,191,36,.12);
-        --pill-bg:#1e293b; --pill-border:#334155; --pill-text:#cbd5e1;
+        --pill-bg:#292524; --pill-border:#44403c; --pill-text:#d6d3d1;
         --shadow-sm:0 1px 2px rgba(0,0,0,.4); --shadow-md:0 6px 18px rgba(0,0,0,.5); --shadow-lg:0 16px 40px rgba(0,0,0,.6);
     }
 }
@@ -57,19 +59,53 @@ a:hover{ text-decoration:underline; }
 [hidden]{ display:none!important; }
 .ic{ width:1.15em; height:1.15em; flex:none; display:inline-block; vertical-align:middle; }
 
-/* ---- Header fijo ---- */
-.site-header{ position:sticky; top:0; z-index:50; background:rgba(255,255,255,.85);
-    -webkit-backdrop-filter:saturate(1.6) blur(10px); backdrop-filter:saturate(1.6) blur(10px);
-    border-bottom:1px solid var(--border); }
-@media (prefers-color-scheme:dark){ .site-header{ background:rgba(17,24,39,.85); } }
-.header-inner{ max-width:var(--maxw); margin:0 auto; padding:.7rem 1.25rem;
+/* ---- Header negro fijo (con buscador siempre visible) ---- */
+.site-header{ position:sticky; top:0; z-index:50; background:var(--black); border-bottom:3px solid var(--accent); }
+.header-inner{ max-width:var(--maxw); margin:0 auto; padding:.65rem 1.25rem;
     display:flex; align-items:center; gap:1rem; }
-.brand{ font-weight:800; font-size:1.15rem; color:var(--text); letter-spacing:-.01em; white-space:nowrap; }
+.brand{ display:flex; align-items:center; gap:.6rem; font-weight:800; font-size:1.08rem; color:#fff;
+    letter-spacing:-.01em; white-space:nowrap; text-transform:uppercase; }
 .brand:hover{ text-decoration:none; }
-.brand .logo{ color:var(--accent); }
-.site-nav{ margin-left:auto; display:flex; gap:.25rem; align-items:center; }
-.site-nav a{ color:var(--text-dim); font-weight:600; font-size:.92rem; padding:.45rem .7rem; border-radius:8px; }
-.site-nav a:hover{ color:var(--text); background:var(--surface-2); text-decoration:none; }
+.brand .logo{ width:34px; height:34px; border-radius:9px; background:var(--accent); flex:none;
+    display:flex; align-items:center; justify-content:center; color:#fff; }
+.brand .logo .ic{ width:1.25rem; height:1.25rem; }
+.brand .bt span{ color:var(--accent); }
+.hsearch{ flex:1 1 auto; position:relative; display:flex; align-items:center; max-width:620px; margin:0 auto; }
+.hsearch > .ic{ position:absolute; left:.85rem; color:var(--text-mute); width:1.15rem; height:1.15rem; pointer-events:none; }
+.hsearch button .ic{ width:1rem; height:1rem; }
+.hsearch input{ width:100%; height:44px; padding:0 6.6rem 0 2.6rem; border:1px solid #3a332e; border-radius:var(--radius-sm);
+    background:#fff; color:#1c1917; font-size:1rem; font-family:inherit; }
+.hsearch input::placeholder{ color:var(--text-mute); }
+.hsearch button{ position:absolute; right:.35rem; height:34px; padding:0 1rem; border:0; border-radius:8px;
+    background:var(--accent); color:#fff; font-weight:700; font-size:.88rem; font-family:inherit; cursor:pointer;
+    display:flex; align-items:center; gap:.4rem; text-transform:uppercase; letter-spacing:.02em; }
+.hsearch button:hover{ background:var(--accent-hover); }
+.site-nav{ display:flex; gap:.2rem; align-items:center; }
+.site-nav a{ color:#d6d3d1; font-weight:600; font-size:.92rem; padding:.45rem .7rem; border-radius:8px; }
+.site-nav a:hover{ color:#fff; background:rgba(255,255,255,.08); text-decoration:none; }
+@media (max-width:720px){
+    .header-inner{ flex-wrap:wrap; gap:.6rem; }
+    .brand{ font-size:1rem; }
+    .hsearch{ order:3; flex-basis:100%; max-width:none; }
+    .site-nav{ margin-left:auto; }
+}
+
+/* ---- Carrusel de ferreterías ---- */
+.carousel{ position:relative; }
+.track{ display:flex; gap:.8rem; overflow-x:auto; padding:.3rem .1rem .7rem; scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+.track::-webkit-scrollbar{ display:none; }
+.store{ flex:0 0 auto; width:9.5rem; background:var(--surface); border:1px solid var(--border);
+    border-radius:var(--radius-sm); padding:1rem .9rem; box-shadow:var(--shadow-sm); display:flex; flex-direction:column;
+    align-items:center; gap:.55rem; scroll-snap-align:start; text-align:center;
+    transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease; }
+.store:hover{ transform:translateY(-3px); box-shadow:var(--shadow-md); border-color:var(--accent); text-decoration:none; }
+.store .tile{ width:3.1rem; height:3.1rem; border-radius:.7rem; display:flex; align-items:center; justify-content:center;
+    color:#fff; font-weight:800; font-size:1.05rem; letter-spacing:-.02em; flex:none; }
+.store .snm{ font-weight:700; font-size:.92rem; color:var(--text); }
+.store .cnt{ font-size:.76rem; color:var(--text-dim); font-variant-numeric:tabular-nums; }
+.fade-r{ position:absolute; top:0; bottom:.7rem; right:0; width:3.5rem; pointer-events:none;
+    background:linear-gradient(90deg,transparent,var(--bg)); }
 
 .wrap{ max-width:var(--maxw); margin:0 auto; padding:1.5rem 1.25rem 3rem; }
 
@@ -265,16 +301,38 @@ article.guia table{ margin:1.2rem 0; }
 /* ---- Varios ---- */
 .vacio{ text-align:center; padding:3rem 1rem; color:var(--text-dim); background:var(--surface);
     border:1px dashed var(--border-strong); border-radius:var(--radius); }
-.site-footer{ border-top:1px solid var(--border); background:var(--surface); margin-top:3rem; }
-.site-footer .wrap-footer{ max-width:var(--maxw); margin:0 auto; padding:1.7rem 1.25rem; font-size:.85rem; color:var(--text-dim); }
-.site-footer a{ color:var(--text-dim); font-weight:600; }
+.site-footer{ background:var(--black); color:#a8a29e; margin-top:3rem; border-top:3px solid var(--accent); }
+.site-footer a{ color:#a8a29e; }
+.site-footer a:hover{ color:#fff; }
+.foot-main{ max-width:var(--maxw); margin:0 auto; padding:2.2rem 1.25rem 1.6rem; display:flex;
+    justify-content:space-between; gap:2rem 2.5rem; flex-wrap:wrap; }
+.foot-about{ max-width:22rem; }
+.foot-about .brand{ margin-bottom:.7rem; }
+.foot-about p{ color:#78716c; font-size:.86rem; }
+.foot-col h5{ color:#fff; font-size:.8rem; text-transform:uppercase; letter-spacing:.04em; margin-bottom:.7rem; }
+.foot-col a{ display:block; font-size:.88rem; margin-bottom:.5rem; }
+.foot-bottom .wrap-footer{ max-width:var(--maxw); margin:0 auto; padding:1rem 1.25rem 2.2rem; border-top:1px solid #3a332e;
+    display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap; font-size:.84rem; color:#78716c; }
+.foot-bottom .wrap-footer a{ color:#a8a29e; }
+.we2{ display:inline-flex; align-items:center; gap:.5rem; font-weight:600; color:#d6d3d1; }
+.we2 strong{ color:#fff; font-weight:700; }
+.we2 .w2mark{ width:1.5rem; height:1.5rem; border-radius:.4rem; background:var(--accent); color:#fff;
+    font-weight:800; font-size:.7rem; display:flex; align-items:center; justify-content:center; }
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Precios Ferretería", "url": "https://preciosferreteria.cl/"}</script>
 </head>
 <body>
 <header class="site-header">
   <div class="header-inner">
-    <a class="brand" href="https://preciosferreteria.cl/"><span class="logo">🔩</span> Precios Ferretería</a>
+    <a class="brand" href="https://preciosferreteria.cl/">
+      <span class="logo"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 5.5a3.5 3.5 0 0 0-4.6 4.2L3 16.6 5.4 19l6.9-6.9a3.5 3.5 0 0 0 4.2-4.6l-2.1 2.1-2-.5-.5-2 2.1-2.1z"/></svg></span>
+      <span class="bt">Precios<span>Ferretería</span></span>
+    </a>
+    <form class="hsearch" role="search" action="https://preciosferreteria.cl/" method="get">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
+      <input type="text" id="q" name="q" placeholder="Busca materiales… (ej: cemento, fierro 8mm, volcanita)" autocomplete="off">
+      <button type="submit"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>Buscar</button>
+    </form>
     <nav class="site-nav">
       <a href="https://preciosferreteria.cl/">Inicio</a>
       <a href="https://preciosferreteria.cl/guias/">Guías</a>
@@ -284,75 +342,74 @@ article.guia table{ margin:1.2rem 0; }
 <main class="wrap">
 
 <section class="hero">
-  <span class="eyebrow">Materiales de construcción · Chile</span>
-  <h1>Compara precios y construye pagando menos</h1>
-  <p>Reunimos 10.703 productos de 18 ferreterías y tiendas de materiales
-  para que veas al instante dónde está más barato, con historial de precios.</p>
+  <span class="eyebrow">Comparador de materiales · Chile</span>
+  <h1>El precio más bajo en <span style="color:var(--accent)">materiales de construcción</span>, tienda por tienda</h1>
+  <p>Reunimos los precios de 18 ferreterías y distribuidoras de Chile para que
+  sepas al instante dónde comprar más barato tu obra — 10.703 materiales con su historial de precios.</p>
   <div class="metrics">
-    <div class="metric"><b>10.703</b><span>productos</span></div>
-    <div class="metric"><b>18</b><span>tiendas</span></div>
+    <div class="metric"><b>18</b><span>ferreterías comparadas</span></div>
+    <div class="metric"><b>10.703</b><span>materiales</span></div>
     <div class="metric"><b>20</b><span>categorías</span></div>
   </div>
 </section>
 
-<section class="searchbar" aria-label="Buscador de productos">
-  <span class="sb-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg></span>
-  <input type="text" id="q" placeholder="Buscar materiales (ej: cemento, fierro 8mm, cerámica)" autocomplete="off">
-  <span class="sb-div"></span>
-  <div class="sb-select">
-    <select id="rubro" aria-label="Categoría"><option value="">Todas las categorías</option><option value="aislante">Aislante</option><option value="arena">Arena</option><option value="bloque">Bloque</option><option value="cemento">Cemento</option><option value="ceramica">Ceramica</option><option value="clavo">Clavo</option><option value="fierro">Fierro</option><option value="gravilla">Gravilla</option><option value="hormigon">Hormigon</option><option value="ladrillo">Ladrillo</option><option value="mortero">Mortero</option><option value="osb">OSB</option><option value="perfil">Perfil</option><option value="pino">Pino</option><option value="pintura">Pintura</option><option value="pvc">PVC</option><option value="terciado">Terciado</option><option value="tornillo">Tornillo</option><option value="volcanita">Volcanita</option><option value="zinc">Zinc</option></select>
-    <span class="sb-chev"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></span>
-  </div>
-</section>
-<div class="resultados-top">
-  <p class="stats" id="stats">Cargando buscador…</p>
-  <div class="orden" id="orden-wrap" hidden>
-    <label for="orden">Ordenar por</label>
-    <div class="sel-wrap">
-      <select id="orden">
-        <option value="precio-asc">Precio: menor a mayor</option>
-        <option value="precio-desc">Precio: mayor a menor</option>
-        <option value="tienda">Tienda (A–Z)</option>
-        <option value="nombre">Nombre (A–Z)</option>
-      </select>
-      <span class="sb-chev"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></span>
+<div id="res-wrap" hidden>
+  <div class="resultados-top">
+    <p class="stats" id="stats"></p>
+    <div class="orden" id="orden-wrap" hidden>
+      <label for="orden">Ordenar por</label>
+      <div class="sel-wrap">
+        <select id="orden">
+          <option value="precio-asc">Precio: menor a mayor</option>
+          <option value="precio-desc">Precio: mayor a menor</option>
+          <option value="tienda">Tienda (A–Z)</option>
+          <option value="nombre">Nombre (A–Z)</option>
+        </select>
+        <span class="sb-chev"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></span>
+      </div>
     </div>
   </div>
+  <div class="tabla-card">
+  <table class="tabla-comparativa">
+  <thead><tr><th>Producto</th><th>Tienda</th><th>Precio</th></tr></thead>
+  <tbody id="resultados"></tbody>
+  </table>
+  </div>
+  <div class="vacio" id="vacio" hidden>Sin resultados. Prueba con otro término.</div>
+  <nav class="paginacion" id="pag" aria-label="Paginación" hidden>
+    <button type="button" id="prev" class="pg-btn" disabled>← Anterior</button>
+    <span id="pag-info" class="pg-info"></span>
+    <button type="button" id="next" class="pg-btn" disabled>Siguiente →</button>
+  </nav>
 </div>
-<div class="tabla-card">
-<table class="tabla-comparativa">
-<thead><tr><th>Producto</th><th>Tienda</th><th>Precio</th></tr></thead>
-<tbody id="resultados"></tbody>
-</table>
-</div>
-<div class="vacio" id="vacio" hidden>Sin resultados. Prueba con otro término.</div>
-<nav class="paginacion" id="pag" aria-label="Paginación" hidden>
-  <button type="button" id="prev" class="pg-btn" disabled>← Anterior</button>
-  <span id="pag-info" class="pg-info"></span>
-  <button type="button" id="next" class="pg-btn" disabled>Siguiente →</button>
-</nav>
+
+<h2>Ferreterías que comparamos</h2>
+<div class="carousel"><div class="track"><div class="store"><div class="tile" style="background:#ea580c">E</div><div class="snm">Easy</div><div class="cnt">1.493 materiales</div></div><div class="store"><div class="tile" style="background:#9a3412">EM</div><div class="snm">El Mimbral</div><div class="cnt">1.455 materiales</div></div><div class="store"><div class="tile" style="background:#171412">ED</div><div class="snm">El Dato</div><div class="cnt">1.080 materiales</div></div><div class="store"><div class="tile" style="background:#57534e">D</div><div class="snm">DAB</div><div class="cnt">1.042 materiales</div></div><div class="store"><div class="tile" style="background:#ea580c">HR</div><div class="snm">Home Real</div><div class="cnt">752 materiales</div></div><div class="store"><div class="tile" style="background:#9a3412">D</div><div class="snm">Dimasa</div><div class="cnt">657 materiales</div></div><div class="store"><div class="tile" style="background:#171412">C</div><div class="snm">Construplaza</div><div class="cnt">579 materiales</div></div><div class="store"><div class="tile" style="background:#57534e">PM</div><div class="snm">Punto Maestro</div><div class="cnt">558 materiales</div></div><div class="store"><div class="tile" style="background:#ea580c">T</div><div class="snm">Toso</div><div class="cnt">513 materiales</div></div><div class="store"><div class="tile" style="background:#9a3412">A</div><div class="snm">Agrícola</div><div class="cnt">434 materiales</div></div><div class="store"><div class="tile" style="background:#171412">M</div><div class="snm">Madrid</div><div class="cnt">423 materiales</div></div><div class="store"><div class="tile" style="background:#57534e">G</div><div class="snm">Gomila</div><div class="cnt">357 materiales</div></div></div><div class="fade-r"></div></div>
 
 <h2>Explora por categoría</h2>
 <div class="cat-pills"><a class="cat-pill" href="https://preciosferreteria.cl/categoria/tornillo/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5 9.5 5v2.5L12 9l2.5-1.5V5z"/><line x1="12" y1="9" x2="12" y2="21"/><line x1="10.5" y1="12" x2="13" y2="12.6"/><line x1="10.5" y1="15" x2="13" y2="15.6"/><line x1="10.5" y1="18" x2="13" y2="18.6"/></svg><span class="n">Tornillo</span><span class="c">2659</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/pintura/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h14l-1.4 12a2 2 0 0 1-2 1.8H8.4a2 2 0 0 1-2-1.8z"/><path d="M8 7a4 4 0 0 1 8 0"/></svg><span class="n">Pintura</span><span class="c">1898</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/ceramica/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="1.5"/><line x1="12" y1="3.5" x2="12" y2="20.5"/><line x1="3.5" y1="12" x2="20.5" y2="12"/></svg><span class="n">Ceramica</span><span class="c">1304</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/pvc/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8.5" width="18" height="7" rx="3.5"/><line x1="7" y1="8.7" x2="7" y2="15.3"/></svg><span class="n">PVC</span><span class="c">846</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/perfil/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="6" y1="4.5" x2="18" y2="4.5"/><line x1="6" y1="19.5" x2="18" y2="19.5"/><line x1="12" y1="4.5" x2="12" y2="19.5"/></svg><span class="n">Perfil</span><span class="c">626</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/cemento/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3h8v2.5a5 5 0 0 1 3 4.6V18a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3v-7.9a5 5 0 0 1 3-4.6z"/><line x1="9.5" y1="11.5" x2="14.5" y2="11.5"/></svg><span class="n">Cemento</span><span class="c">592</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/arena/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5 3.5 19h17z"/></svg><span class="n">Arena</span><span class="c">424</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/zinc/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 15c1.5-3 3-3 4.5 0s3 3 4.5 0 3-3 4.5 0 3 3 4.5 0"/><path d="M3 10.5c1.5-3 3-3 4.5 0"/></svg><span class="n">Zinc</span><span class="c">313</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/clavo/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5 9.5 5v2.5L12 9l2.5-1.5V5z"/><line x1="12" y1="9" x2="12" y2="21"/><line x1="10.5" y1="12" x2="13" y2="12.6"/><line x1="10.5" y1="15" x2="13" y2="15.6"/><line x1="10.5" y1="18" x2="13" y2="18.6"/></svg><span class="n">Clavo</span><span class="c">292</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/volcanita/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="1.5"/><line x1="3.5" y1="9.7" x2="20.5" y2="9.7"/><line x1="3.5" y1="14.3" x2="20.5" y2="14.3"/></svg><span class="n">Volcanita</span><span class="c">289</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/ladrillo/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="1"/><line x1="3.5" y1="12" x2="20.5" y2="12"/><line x1="12" y1="4.5" x2="12" y2="12"/><line x1="7.5" y1="12" x2="7.5" y2="19.5"/><line x1="16.5" y1="12" x2="16.5" y2="19.5"/></svg><span class="n">Ladrillo</span><span class="c">286</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/pino/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 7 10h3l-4 6h4l-1 5h6l-1-5h4l-4-6h3z"/></svg><span class="n">Pino</span><span class="c">237</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/mortero/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3h8v2.5a5 5 0 0 1 3 4.6V18a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3v-7.9a5 5 0 0 1 3-4.6z"/><line x1="9.5" y1="11.5" x2="14.5" y2="11.5"/></svg><span class="n">Mortero</span><span class="c">225</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/terciado/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="1.5"/><line x1="3.5" y1="9.7" x2="20.5" y2="9.7"/><line x1="3.5" y1="14.3" x2="20.5" y2="14.3"/></svg><span class="n">Terciado</span><span class="c">165</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/fierro/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4.5" y1="19.5" x2="19.5" y2="4.5"/><line x1="7.5" y1="11.5" x2="9.5" y2="13.5"/><line x1="10.5" y1="8.5" x2="12.5" y2="10.5"/><line x1="13.5" y1="5.5" x2="15.5" y2="7.5"/></svg><span class="n">Fierro</span><span class="c">135</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/bloque/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="1"/><line x1="3.5" y1="12" x2="20.5" y2="12"/><line x1="12" y1="4.5" x2="12" y2="12"/><line x1="7.5" y1="12" x2="7.5" y2="19.5"/><line x1="16.5" y1="12" x2="16.5" y2="19.5"/></svg><span class="n">Bloque</span><span class="c">133</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/osb/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="1.5"/><line x1="3.5" y1="9.7" x2="20.5" y2="9.7"/><line x1="3.5" y1="14.3" x2="20.5" y2="14.3"/></svg><span class="n">OSB</span><span class="c">98</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/aislante/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="1.5"/><line x1="3.5" y1="9.7" x2="20.5" y2="9.7"/><line x1="3.5" y1="14.3" x2="20.5" y2="14.3"/></svg><span class="n">Aislante</span><span class="c">89</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/gravilla/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5 3.5 19h17z"/></svg><span class="n">Gravilla</span><span class="c">49</span></a><a class="cat-pill" href="https://preciosferreteria.cl/categoria/hormigon/"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3h8v2.5a5 5 0 0 1 3 4.6V18a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3v-7.9a5 5 0 0 1 3-4.6z"/><line x1="9.5" y1="11.5" x2="14.5" y2="11.5"/></svg><span class="n">Hormigon</span><span class="c">43</span></a></div>
 
 <h2>Comparaciones destacadas</h2><p style="color:var(--text-dim);font-size:.9rem;margin:-.3rem 0 1rem">El mismo material, precio por tienda, para que veas al instante dónde está más barato. Actualizado con cada rastreo.</p><div class="card"><h3><span class="card-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="1.5"/><line x1="3.5" y1="9.7" x2="20.5" y2="9.7"/><line x1="3.5" y1="14.3" x2="20.5" y2="14.3"/></svg></span>Plancha OSB 9 mm <span class="disp-badge">hasta 111% de diferencia</span></h3><div class="fila-tienda mejor"><span class="ft-store"><span class="tienda">Easy</span><span class="badge-mejor"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Más barato</span></span><a class="precio" href="https://preciosferreteria.cl/producto/tablero-osb-smart-side-9-5-mm-20x488-cm-easy-20424/">$8.990 →</a></div><div class="fila-tienda"><span class="ft-store"><span class="tienda">Home Real</span></span><a class="precio" href="https://preciosferreteria.cl/producto/tablero-osb-multiproposito-9mm-1-22x2-44-homereal-229000100484/">$9.690 →</a></div><div class="fila-tienda"><span class="ft-store"><span class="tienda">Construplaza</span></span><a class="precio" href="https://preciosferreteria.cl/producto/osb-multiplac-9-x122x244-placa-madera-construplaza-1065822082/">$9.790 →</a></div><div class="fila-tienda"><span class="ft-store"><span class="tienda">El Mimbral</span></span><a class="precio" href="https://preciosferreteria.cl/producto/osb-1220x2440x9-5mm-multiproposito-no-estructural-mimbral-93008076/">$9.970 →</a></div><a href="https://preciosferreteria.cl/categoria/osb/" style="display:block;margin-top:.5rem;font-size:.82rem;font-weight:600">Ver las 11 tiendas →</a><a href="https://meli.la/2jDAtt9" target="_blank" rel="sponsored nofollow noopener" style="display:inline-block;margin-top:.55rem;font-size:.78rem;font-weight:700;color:#2d3277;background:#ffe600;padding:.3rem .65rem;border-radius:6px;text-decoration:none">Comparar en Mercado Libre →</a></div><div class="card"><h3><span class="card-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 15c1.5-3 3-3 4.5 0s3 3 4.5 0 3-3 4.5 0 3 3 4.5 0"/><path d="M3 10.5c1.5-3 3-3 4.5 0"/></svg></span>Plancha de zinc 0,35 acanalada <span class="disp-badge">hasta 30% de diferencia</span></h3><div class="fila-tienda mejor"><span class="ft-store"><span class="tienda">Sodimac</span><span class="badge-mejor"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Más barato</span></span><a class="precio" href="https://preciosferreteria.cl/producto/plancha-zinc-acanalada-0-35-mm-85-1x200-cm-gris-azm150-sodimac-110273921/">$5.651 →</a></div><div class="fila-tienda"><span class="ft-store"><span class="tienda">Easy</span></span><a class="precio" href="https://preciosferreteria.cl/producto/plancha-zincalum-ondulada-0-35x851x2000-mm-easy-638/">$5.870 →</a></div><div class="fila-tienda"><span class="ft-store"><span class="tienda">Madrid</span></span><a class="precio" href="https://preciosferreteria.cl/producto/plancha-zinc-acanalada-onda-3-4-az80-0-35-x-851-x-2-000-mm-madrid-01teczie0059/">$5.970 →</a></div><div class="fila-tienda"><span class="ft-store"><span class="tienda">Construplaza</span></span><a class="precio" href="https://preciosferreteria.cl/producto/plancha-zinc-alum-v-0-35x895x2000-econ-az-80-construplaza-615492048/">$6.234 →</a></div><a href="https://preciosferreteria.cl/categoria/zinc/" style="display:block;margin-top:.5rem;font-size:.82rem;font-weight:600">Ver las 10 tiendas →</a><a href="https://meli.la/1U6ryQD" target="_blank" rel="sponsored nofollow noopener" style="display:inline-block;margin-top:.55rem;font-size:.78rem;font-weight:700;color:#2d3277;background:#ffe600;padding:.3rem .65rem;border-radius:6px;text-decoration:none">Comparar en Mercado Libre →</a></div><div class="card"><h3><span class="card-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3h8v2.5a5 5 0 0 1 3 4.6V18a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3v-7.9a5 5 0 0 1 3-4.6z"/><line x1="9.5" y1="11.5" x2="14.5" y2="11.5"/></svg></span>Mortero de pega 25 kg <span class="disp-badge">hasta 93% de diferencia</span></h3><div class="fila-tienda mejor"><span class="ft-store"><span class="tienda">Construplaza</span><span class="badge-mejor"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Más barato</span></span><a class="precio" href="https://preciosferreteria.cl/producto/mortero-pega-albanileria-m10-sc25-kg-transex-pg002-25-construplaza-1690109849/">$2.691 →</a></div><div class="fila-tienda"><span class="ft-store"><span class="tienda">Punto Maestro</span></span><a class="precio" href="https://preciosferreteria.cl/producto/mortero-pega-m-10-25-kg-tx-puntomaestro-2062445002/">$2.990 →</a></div><div class="fila-tienda"><span class="ft-store"><span class="tienda">Easy</span></span><a class="precio" href="https://preciosferreteria.cl/producto/mortero-pega-albanileria-normal-a01-predosificado-25-kg-easy-25428/">$3.230 →</a></div><div class="fila-tienda"><span class="ft-store"><span class="tienda">El Dato</span></span><a class="precio" href="https://preciosferreteria.cl/producto/mortero-pega-albanil-25-kg-eldato-txpe25/">$3.590 →</a></div><a href="https://preciosferreteria.cl/categoria/mortero/" style="display:block;margin-top:.5rem;font-size:.82rem;font-weight:600">Ver las 8 tiendas →</a><a href="https://meli.la/133iHi4" target="_blank" rel="sponsored nofollow noopener" style="display:inline-block;margin-top:.55rem;font-size:.78rem;font-weight:700;color:#2d3277;background:#ffe600;padding:.3rem .65rem;border-radius:6px;text-decoration:none">Comparar en Mercado Libre →</a></div><div class="card"><h3><span class="card-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="1.5"/><line x1="3.5" y1="9.7" x2="20.5" y2="9.7"/><line x1="3.5" y1="14.3" x2="20.5" y2="14.3"/></svg></span>Terciado estructural 9 mm <span class="disp-badge">hasta 33% de diferencia</span></h3><div class="fila-tienda mejor"><span class="ft-store"><span class="tienda">Sodimac</span><span class="badge-mejor"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Más barato</span></span><a class="precio" href="https://preciosferreteria.cl/producto/terciado-estructural-pino-9-mm-122x244-cm-sodimac-110314071/">$15.550 →</a></div><div class="fila-tienda"><span class="ft-store"><span class="tienda">El Mimbral</span></span><a class="precio" href="https://preciosferreteria.cl/producto/terciado-estructural-pino-9x1220x2440mm-arauco-mimbral-93004059/">$16.990 →</a></div><div class="fila-tienda"><span class="ft-store"><span class="tienda">Punto Maestro</span></span><a class="precio" href="https://preciosferreteria.cl/producto/terciado-ranurado-colonial-9mm-1-22-x-2-44-puntomaestro-408631203/">$17.290 →</a></div><div class="fila-tienda"><span class="ft-store"><span class="tienda">Easy</span></span><a class="precio" href="https://preciosferreteria.cl/producto/terciado-ranurado-colonial-9x1220x2440-mm-easy-5865/">$17.950 →</a></div><a href="https://preciosferreteria.cl/categoria/terciado/" style="display:block;margin-top:.5rem;font-size:.82rem;font-weight:600">Ver las 8 tiendas →</a><a href="https://meli.la/2RatvHz" target="_blank" rel="sponsored nofollow noopener" style="display:inline-block;margin-top:.55rem;font-size:.78rem;font-weight:700;color:#2d3277;background:#ffe600;padding:.3rem .65rem;border-radius:6px;text-decoration:none">Comparar en Mercado Libre →</a></div><div class="card"><h3><span class="card-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3h8v2.5a5 5 0 0 1 3 4.6V18a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3v-7.9a5 5 0 0 1 3-4.6z"/><line x1="9.5" y1="11.5" x2="14.5" y2="11.5"/></svg></span>Cemento 25 kg <span class="disp-badge">hasta 24% de diferencia</span></h3><div class="fila-tienda mejor"><span class="ft-store"><span class="tienda">Punto Maestro</span><span class="badge-mejor"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Más barato</span></span><a class="precio" href="https://preciosferreteria.cl/producto/cemento-especial-tx-saco-25kg-puntomaestro-2062444976/">$4.190 →</a></div><div class="fila-tienda"><span class="ft-store"><span class="tienda">Gomila</span></span><a class="precio" href="https://preciosferreteria.cl/producto/cemento-especial-25kg-transex-gomila-cemtr1001001/">$4.449 →</a></div><div class="fila-tienda"><span class="ft-store"><span class="tienda">Construplaza</span></span><a class="precio" href="https://preciosferreteria.cl/producto/cemento-especial-eco-sc-25kg-ecos25-transex-construplaza-1462968607/">$4.590 →</a></div><div class="fila-tienda"><span class="ft-store"><span class="tienda">El Dato</span></span><a class="precio" href="https://preciosferreteria.cl/producto/cemento-melon-bio-bio-25-kg-eldato-800125/">$4.690 →</a></div><a href="https://preciosferreteria.cl/categoria/cemento/" style="display:block;margin-top:.5rem;font-size:.82rem;font-weight:600">Ver las 6 tiendas →</a><a href="https://meli.la/2hJVa4Z" target="_blank" rel="sponsored nofollow noopener" style="display:inline-block;margin-top:.55rem;font-size:.78rem;font-weight:700;color:#2d3277;background:#ffe600;padding:.3rem .65rem;border-radius:6px;text-decoration:none">Comparar en Mercado Libre →</a></div><div class="card"><h3><span class="card-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="1.5"/><line x1="12" y1="3.5" x2="12" y2="20.5"/><line x1="3.5" y1="12" x2="20.5" y2="12"/></svg></span>Porcelanato 60x60 cm <span class="disp-badge">hasta 83% de diferencia</span></h3><div class="fila-tienda mejor"><span class="ft-store"><span class="tienda">El Dato</span><span class="badge-mejor"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Más barato</span></span><a class="precio" href="https://preciosferreteria.cl/producto/js6800-porcelanato-60x60x8mm-aperol-1-45-6-790-m2-eldato-js6800/">$9.846 →</a></div><div class="fila-tienda"><span class="ft-store"><span class="tienda">Dimaplac</span></span><a class="precio" href="https://preciosferreteria.cl/producto/porcelanato-60x60-salt-soluble-1-44m2xcj-dimaplac-4834porcel/">$13.260 →</a></div><div class="fila-tienda"><span class="ft-store"><span class="tienda">DAB</span></span><a class="precio" href="https://preciosferreteria.cl/producto/porcelanato-60x60-beige-rect-pulido-1-44-dab-1034756/">$13.290 →</a></div><div class="fila-tienda"><span class="ft-store"><span class="tienda">El Mimbral</span></span><a class="precio" href="https://preciosferreteria.cl/producto/porcelanato-gres-60x60-greige-1-44m2-caja-cordillera-mimbral-37018664/">$13.667 →</a></div><a href="https://preciosferreteria.cl/categoria/ceramica/" style="display:block;margin-top:.5rem;font-size:.82rem;font-weight:600">Ver las 6 tiendas →</a><a href="https://meli.la/2ahmdyo" target="_blank" rel="sponsored nofollow noopener" style="display:inline-block;margin-top:.55rem;font-size:.78rem;font-weight:700;color:#2d3277;background:#ffe600;padding:.3rem .65rem;border-radius:6px;text-decoration:none">Comparar en Mercado Libre →</a></div><div class="card"><h3><span class="card-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5 9.5 5v2.5L12 9l2.5-1.5V5z"/><line x1="12" y1="9" x2="12" y2="21"/><line x1="10.5" y1="12" x2="13" y2="12.6"/><line x1="10.5" y1="15" x2="13" y2="15.6"/><line x1="10.5" y1="18" x2="13" y2="18.6"/></svg></span>Clavos 1 kg <span class="disp-badge">hasta 93% de diferencia</span></h3><div class="fila-tienda mejor"><span class="ft-store"><span class="tienda">El Mimbral</span><span class="badge-mejor"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Más barato</span></span><a class="precio" href="https://preciosferreteria.cl/producto/clavos-corrientes-1-1-4-x-kilo-rgm-mimbral-212001130/">$1.290 →</a></div><div class="fila-tienda"><span class="ft-store"><span class="tienda">Construplaza</span></span><a class="precio" href="https://preciosferreteria.cl/producto/clavo-de-2-bolsa-de-1-kilo-construplaza-1453826835/">$1.690 →</a></div><div class="fila-tienda"><span class="ft-store"><span class="tienda">Madrid</span></span><a class="precio" href="https://preciosferreteria.cl/producto/clavo-cte-3x10-dosificado-1kg-madrid-02alaclv0119/">$1.790 →</a></div><div class="fila-tienda"><span class="ft-store"><span class="tienda">Easy</span></span><a class="precio" href="https://preciosferreteria.cl/producto/clavos-terrano-1-1-2-especiales-bolsa-1-2-kilo-inchalam-easy-1580/">$2.490 →</a></div><a href="https://meli.la/31s95yf" target="_blank" rel="sponsored nofollow noopener" style="display:inline-block;margin-top:.55rem;font-size:.78rem;font-weight:700;color:#2d3277;background:#ffe600;padding:.3rem .65rem;border-radius:6px;text-decoration:none">Comparar en Mercado Libre →</a></div><div class="card"><h3><span class="card-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="1"/><line x1="3.5" y1="12" x2="20.5" y2="12"/><line x1="12" y1="4.5" x2="12" y2="12"/><line x1="7.5" y1="12" x2="7.5" y2="19.5"/><line x1="16.5" y1="12" x2="16.5" y2="19.5"/></svg></span>Bloque 9x19x39 cm <span class="disp-badge">hasta 124% de diferencia</span></h3><div class="fila-tienda mejor"><span class="ft-store"><span class="tienda">Dimasa</span><span class="badge-mejor"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Más barato</span></span><a class="precio" href="https://preciosferreteria.cl/producto/bloque-bt3-9x19x39-cm-210-10-kg-un-dimasa-blo0070/">$1.297 →</a></div><div class="fila-tienda"><span class="ft-store"><span class="tienda">Sodimac</span></span><a class="precio" href="https://preciosferreteria.cl/producto/bloque-liso-gris-9x19x39-cm-sodimac-110288642/">$1.390 →</a></div><div class="fila-tienda"><span class="ft-store"><span class="tienda">Gomila</span></span><a class="precio" href="https://preciosferreteria.cl/producto/bloque-concreto-liso-15-14x19x39-gris-grau-gomila-bloco4001001/">$2.900 →</a></div><a href="https://meli.la/2piRkuq" target="_blank" rel="sponsored nofollow noopener" style="display:inline-block;margin-top:.55rem;font-size:.78rem;font-weight:700;color:#2d3277;background:#ffe600;padding:.3rem .65rem;border-radius:6px;text-decoration:none">Comparar en Mercado Libre →</a></div><div class="card"><h3><span class="card-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="1.5"/><line x1="3.5" y1="9.7" x2="20.5" y2="9.7"/><line x1="3.5" y1="14.3" x2="20.5" y2="14.3"/></svg></span>Plancha de volcanita 10 mm <span class="disp-badge">hasta 1% de diferencia</span></h3><div class="fila-tienda mejor"><span class="ft-store"><span class="tienda">DAB</span><span class="badge-mejor"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Más barato</span></span><a class="precio" href="https://preciosferreteria.cl/producto/plancha-volcanita-st-10-mm-1-20-x-2-40mt-br-dab-1004385/">$6.356 →</a></div><div class="fila-tienda"><span class="ft-store"><span class="tienda">Easy</span></span><a class="precio" href="https://preciosferreteria.cl/producto/plancha-volcanita-10-mm-120x240-cm-easy-543/">$6.450 →</a></div><a href="https://meli.la/1vKf3qV" target="_blank" rel="sponsored nofollow noopener" style="display:inline-block;margin-top:.55rem;font-size:.78rem;font-weight:700;color:#2d3277;background:#ffe600;padding:.3rem .65rem;border-radius:6px;text-decoration:none">Comparar en Mercado Libre →</a></div>
 
-<h2>Destacados de hoy</h2><p style="color:var(--text-dim);font-size:.9rem;margin:-.3rem 0 1rem">Un material destacado por categoría, con su precio más bajo entre las tiendas que seguimos. Rotan cada día: vuelve mañana y encontrarás otros.</p><div class="card"><h3><span class="card-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8.5" width="18" height="7" rx="3.5"/><line x1="7" y1="8.7" x2="7" y2="15.3"/></svg></span>Tubo de PVC</h3><div class="fila-tienda mejor"><span class="ft-store"><span class="tienda">El Mimbral</span><span class="badge-mejor"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Más barato</span></span><a class="precio" href="https://preciosferreteria.cl/producto/tubo-pvc-conduit-3-metros-tubo-pvc-conduit-20mm-x-3-metros-mimbral-212015002/">$1.090 →</a></div><a href="https://meli.la/2F35N7J" target="_blank" rel="sponsored nofollow noopener" style="display:inline-block;margin-top:.6rem;font-size:.8rem;font-weight:700;color:#2d3277;background:#ffe600;padding:.35rem .7rem;border-radius:6px;text-decoration:none">Comparar en Mercado Libre →</a></div><div class="card"><h3><span class="card-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 15c1.5-3 3-3 4.5 0s3 3 4.5 0 3-3 4.5 0 3 3 4.5 0"/><path d="M3 10.5c1.5-3 3-3 4.5 0"/></svg></span>Plancha de zinc</h3><div class="fila-tienda mejor"><span class="ft-store"><span class="tienda">Construplaza</span><span class="badge-mejor"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Más barato</span></span><a class="precio" href="https://preciosferreteria.cl/producto/plancha-zinc-alum-acanalada-0-30x851x2000-economica-az-80-construplaza-1496318802/">$5.457 →</a></div><a href="https://meli.la/1U6ryQD" target="_blank" rel="sponsored nofollow noopener" style="display:inline-block;margin-top:.6rem;font-size:.8rem;font-weight:700;color:#2d3277;background:#ffe600;padding:.35rem .7rem;border-radius:6px;text-decoration:none">Comparar en Mercado Libre →</a></div><div class="card"><h3><span class="card-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5 9.5 5v2.5L12 9l2.5-1.5V5z"/><line x1="12" y1="9" x2="12" y2="21"/><line x1="10.5" y1="12" x2="13" y2="12.6"/><line x1="10.5" y1="15" x2="13" y2="15.6"/><line x1="10.5" y1="18" x2="13" y2="18.6"/></svg></span>Tornillos autoperforantes</h3><div class="fila-tienda mejor"><span class="ft-store"><span class="tienda">El Dato</span><span class="badge-mejor"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Más barato</span></span><a class="precio" href="https://preciosferreteria.cl/producto/tornillo-autoperforante-12-x-3-4-hex-zc-goma-eldato-afet604/">$50 →</a></div><a href="https://meli.la/22Ks3A7" target="_blank" rel="sponsored nofollow noopener" style="display:inline-block;margin-top:.6rem;font-size:.8rem;font-weight:700;color:#2d3277;background:#ffe600;padding:.35rem .7rem;border-radius:6px;text-decoration:none">Comparar en Mercado Libre →</a></div>
+<h2>Ofertas destacadas</h2><p style="color:var(--text-dim);font-size:.9rem;margin:-.3rem 0 1rem">Un material destacado por categoría, con su precio más bajo entre las tiendas que seguimos. Rotan cada día: vuelve mañana y encontrarás otros.</p><div class="card"><h3><span class="card-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8.5" width="18" height="7" rx="3.5"/><line x1="7" y1="8.7" x2="7" y2="15.3"/></svg></span>Tubo de PVC</h3><div class="fila-tienda mejor"><span class="ft-store"><span class="tienda">El Mimbral</span><span class="badge-mejor"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Más barato</span></span><a class="precio" href="https://preciosferreteria.cl/producto/tubo-pvc-conduit-3-metros-tubo-pvc-conduit-20mm-x-3-metros-mimbral-212015002/">$1.090 →</a></div><a href="https://meli.la/2F35N7J" target="_blank" rel="sponsored nofollow noopener" style="display:inline-block;margin-top:.6rem;font-size:.8rem;font-weight:700;color:#2d3277;background:#ffe600;padding:.35rem .7rem;border-radius:6px;text-decoration:none">Comparar en Mercado Libre →</a></div><div class="card"><h3><span class="card-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 15c1.5-3 3-3 4.5 0s3 3 4.5 0 3-3 4.5 0 3 3 4.5 0"/><path d="M3 10.5c1.5-3 3-3 4.5 0"/></svg></span>Plancha de zinc</h3><div class="fila-tienda mejor"><span class="ft-store"><span class="tienda">Construplaza</span><span class="badge-mejor"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Más barato</span></span><a class="precio" href="https://preciosferreteria.cl/producto/plancha-zinc-alum-acanalada-0-30x851x2000-economica-az-80-construplaza-1496318802/">$5.457 →</a></div><a href="https://meli.la/1U6ryQD" target="_blank" rel="sponsored nofollow noopener" style="display:inline-block;margin-top:.6rem;font-size:.8rem;font-weight:700;color:#2d3277;background:#ffe600;padding:.35rem .7rem;border-radius:6px;text-decoration:none">Comparar en Mercado Libre →</a></div><div class="card"><h3><span class="card-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5 9.5 5v2.5L12 9l2.5-1.5V5z"/><line x1="12" y1="9" x2="12" y2="21"/><line x1="10.5" y1="12" x2="13" y2="12.6"/><line x1="10.5" y1="15" x2="13" y2="15.6"/><line x1="10.5" y1="18" x2="13" y2="18.6"/></svg></span>Tornillos autoperforantes</h3><div class="fila-tienda mejor"><span class="ft-store"><span class="tienda">El Dato</span><span class="badge-mejor"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Más barato</span></span><a class="precio" href="https://preciosferreteria.cl/producto/tornillo-autoperforante-12-x-3-4-hex-zc-goma-eldato-afet604/">$50 →</a></div><a href="https://meli.la/22Ks3A7" target="_blank" rel="sponsored nofollow noopener" style="display:inline-block;margin-top:.6rem;font-size:.8rem;font-weight:700;color:#2d3277;background:#ffe600;padding:.35rem .7rem;border-radius:6px;text-decoration:none">Comparar en Mercado Libre →</a></div>
 
 <h2>Guías para tu obra</h2><a class="guia-card" href="https://preciosferreteria.cl/guias/cuanto-cuesta-radier-hormigon-chile/"><div class="t">¿Cuánto cuesta hacer un radier de hormigón en Chile? Guía 2026</div><div class="d">Cuánto material y cuánta plata necesitas para un radier: cemento, arena, gravilla y fierro por m². Cálculo, tips y comparación de precios entre ferreterías.</div></a><a class="guia-card" href="https://preciosferreteria.cl/guias/precio-fierro-construccion-chile/"><div class="t">Precio del fierro para construcción en Chile: guía y calibres 2026</div><div class="d">Cómo se vende el fierro de construcción en Chile, qué calibre usar y cuánto cuesta la barra. Compara precios de fierro estriado entre ferreterías.</div></a><a class="guia-card" href="https://preciosferreteria.cl/guias/cuanto-rinde-saco-cemento/"><div class="t">¿Cuánto rinde un saco de cemento? Tabla de rendimiento 2026</div><div class="d">Cuántos m² o m³ rinde un saco de cemento según el uso: estuco, radier, pega de ladrillos. Tabla de rendimiento y comparación de precios.</div></a><a class="guia-card" href="https://preciosferreteria.cl/guias/ceramica-o-porcelanato-cual-elegir-precio-m2/"><div class="t">Cerámica o porcelanato: cuál elegir y cuánto cuesta el m² (2026)</div><div class="d">Diferencias entre cerámica y porcelanato, cuál conviene por ambiente y cuánto cuesta el m² en Chile. Compara precios de cerámica entre ferreterías.</div></a><p style="margin-top:.5rem"><a href="https://preciosferreteria.cl/guias/">Ver todas las guías →</a></p>
 
 <script>
 (function(){
-  // Mismo origen (root-relativo): el buscador funciona por http o https y en
-  // cualquier despliegue, sin depender de que el certificado del dominio esté listo.
-  var PER=20,page=1,orden='precio-asc',filtered=[];
-  var elQ=document.getElementById('q'),elR=document.getElementById('rubro'),
+  // El buscador vive en el header (fijo, siempre visible). Los resultados
+  // aparecen aquí solo cuando hay una búsqueda. En otras páginas el formulario
+  // hace GET a la portada con ?q=, y aquí se rellena y filtra.
+  var PER=20,page=1,orden='precio-asc',filtered=[],DATA=[],IDX=[],ready=false;
+  var elQ=document.getElementById('q'),
+      elForm=elQ?elQ.closest('form'):null,
+      elWrap=document.getElementById('res-wrap'),
       elRes=document.getElementById('resultados'),elStats=document.getElementById('stats'),
       elVac=document.getElementById('vacio'),elSel=document.getElementById('orden'),
       elOrdenWrap=document.getElementById('orden-wrap'),elPag=document.getElementById('pag'),
       elPrev=document.getElementById('prev'),elNext=document.getElementById('next'),
       elInfo=document.getElementById('pag-info');
-  var DATA=[],IDX=[];
+  if(!elQ||!elWrap)return;
   function sa(s){return (s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
   function fp(n){return n==null?'—':'$'+n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,'.');}
   function esc(s){return (s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
@@ -363,13 +420,15 @@ article.guia table{ margin:1.2rem 0; }
     return a.n.localeCompare(b.n);
   }
   function filtrar(){
-    var q=sa(elQ.value.trim()),r=elR.value,terms=q?q.split(/\s+/):[];
+    var q=sa((elQ.value||'').trim()),terms=q?q.split(/\s+/):[];
+    if(!terms.length){ elWrap.hidden=true; filtered=[]; return; }
+    elWrap.hidden=false;
+    if(!ready){ elStats.textContent='Cargando…'; return; }
     filtered=[];
     for(var i=0;i<DATA.length;i++){
-      var p=DATA[i];
-      if(r&&p.r!==r)continue;
-      if(terms.length){var t=IDX[i],ok=true;for(var k=0;k<terms.length;k++){if(t.indexOf(terms[k])===-1){ok=false;break;}}if(!ok)continue;}
-      filtered.push(p);
+      var t=IDX[i],ok=true;
+      for(var k=0;k<terms.length;k++){if(t.indexOf(terms[k])===-1){ok=false;break;}}
+      if(ok)filtered.push(DATA[i]);
     }
     page=1; render();
   }
@@ -378,7 +437,7 @@ article.guia table{ margin:1.2rem 0; }
     var total=filtered.length,pages=Math.max(1,Math.ceil(total/PER));
     if(page>pages)page=pages; if(page<1)page=1;
     var ini=(page-1)*PER,rows=filtered.slice(ini,ini+PER);
-    elStats.textContent=total+' resultado'+(total===1?'':'s')+' de '+DATA.length;
+    elStats.textContent=total+' resultado'+(total===1?'':'s');
     elRes.innerHTML=rows.map(function(p){
       return '<tr><td data-label="Producto"><a href="/producto/'+p.s+'/">'+esc(p.n)+'</a></td>'+
              '<td data-label="Tienda"><span class="tienda">'+esc(p.p)+'</span></td>'+
@@ -393,21 +452,47 @@ article.guia table{ margin:1.2rem 0; }
   elPrev.addEventListener('click',function(){page--;render();});
   elNext.addEventListener('click',function(){page++;render();});
   elSel.addEventListener('change',function(){orden=elSel.value;page=1;render();});
+  elQ.addEventListener('input',filtrar);
+  if(elForm)elForm.addEventListener('submit',function(e){e.preventDefault();filtrar();if(!elWrap.hidden)elWrap.scrollIntoView({behavior:'smooth',block:'start'});});
+  try{ var qp=new URLSearchParams(location.search).get('q'); if(qp)elQ.value=qp; }catch(e){}
   fetch('/assets/buscador.json').then(function(r){return r.json();}).then(function(d){
-    DATA=d; IDX=DATA.map(function(p){return sa(p.n+' '+p.m);});
-    elQ.addEventListener('input',filtrar); elR.addEventListener('change',filtrar); filtrar();
-  }).catch(function(){elStats.textContent='No se pudo cargar el buscador.';});
+    DATA=d; IDX=DATA.map(function(p){return sa(p.n+' '+p.m);}); ready=true;
+    if(elQ.value.trim())filtrar();
+  }).catch(function(){ if(elStats)elStats.textContent='No se pudo cargar el buscador.'; });
 })();
 </script>
 
 </main>
 <footer class="site-footer">
-  <div class="wrap-footer">
-    <p><a href="https://preciosferreteria.cl/">Precios Ferretería</a> — comparador de precios de
-    materiales de construcción y ferretería en Chile. Precios referenciales tomados
-    automáticamente de las tiendas; verifica siempre el precio final en el sitio de
-    cada tienda. Actualizado: 2026-09-09.</p>
-    <p><a href="https://preciosferreteria.cl/privacidad/">Política de privacidad</a></p>
+  <div class="foot-main">
+    <div class="foot-about">
+      <a class="brand" href="https://preciosferreteria.cl/"><span class="logo"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 5.5a3.5 3.5 0 0 0-4.6 4.2L3 16.6 5.4 19l6.9-6.9a3.5 3.5 0 0 0 4.2-4.6l-2.1 2.1-2-.5-.5-2 2.1-2.1z"/></svg></span><span class="bt">Precios<span>Ferretería</span></span></a>
+      <p>Comparador de precios de materiales de construcción y ferretería en Chile.
+      Precios referenciales tomados automáticamente; verifica siempre el precio final
+      en cada tienda. Actualizado: 2026-09-09.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Explorar</h5>
+      <a href="https://preciosferreteria.cl/">Inicio</a>
+      <a href="https://preciosferreteria.cl/guias/">Guías de obra</a>
+    </div>
+    <div class="foot-col">
+      <h5>Categorías</h5>
+      <a href="https://preciosferreteria.cl/categoria/cemento/">Cemento</a>
+      <a href="https://preciosferreteria.cl/categoria/fierro/">Fierro</a>
+      <a href="https://preciosferreteria.cl/categoria/ceramica/">Cerámica</a>
+      <a href="https://preciosferreteria.cl/categoria/pintura/">Pintura</a>
+    </div>
+    <div class="foot-col">
+      <h5>Legal</h5>
+      <a href="https://preciosferreteria.cl/privacidad/">Política de privacidad</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div class="wrap-footer">
+      <span>© 2026 Precios Ferretería. Precios referenciales.</span>
+      <span class="we2"><span class="w2mark">w2</span>Creado por <strong>we2&nbsp;Technologies</strong></span>
+    </div>
   </div>
 </footer>
 </body>

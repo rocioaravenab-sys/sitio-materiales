@@ -22,30 +22,32 @@
     src:url("/assets/fonts/geist-latin.woff2") format("woff2"); }
 *{ box-sizing:border-box; margin:0; padding:0; }
 :root{
-    --bg:#ffffff; --surface:#ffffff; --surface-2:#f3f4f6;
-    --text:#111827; --text-dim:#6b7280; --text-mute:#9ca3af;
-    --border:#e5e7eb; --border-strong:#d1d5db;
-    --accent:#ea580c; --accent-hover:#c2410c; --accent-soft:#fff7ed; --accent-line:rgba(234,88,12,.28); --accent-ring:rgba(234,88,12,.28);
+    --bg:#f5f5f4; --surface:#ffffff; --surface-2:#f0efed;
+    --text:#1c1917; --text-dim:#78716c; --text-mute:#a8a29e;
+    --border:#e7e5e4; --border-strong:#d6d3d1;
+    --accent:#ea580c; --accent-hover:#c2410c; --accent-soft:#fff2e9; --accent-line:rgba(234,88,12,.28); --accent-ring:rgba(234,88,12,.28);
+    --black:#171412; --black-2:#26211d; --rust:#9a3412; --rust-soft:#f7e7de; --steel:#57534e;
     --ok:#0d9488; --mint-bg:#d1fae5; --mint-text:#0f766e; --mint-line:rgba(13,148,136,.28);
     --warn:#b45309; --warn-soft:rgba(180,83,9,.1);
-    --pill-bg:#f9fafb; --pill-border:#e5e7eb; --pill-text:#374151;
-    --shadow-sm:0 1px 2px rgba(15,23,42,.04),0 1px 3px rgba(15,23,42,.06);
-    --shadow-md:0 6px 16px rgba(15,23,42,.08);
-    --shadow-lg:0 16px 40px rgba(15,23,42,.12);
-    --radius:16px; --radius-sm:12px; --radius-xs:9px; --radius-pill:999px;
+    --pill-bg:#f9fafb; --pill-border:#e7e5e4; --pill-text:#44403c;
+    --shadow-sm:0 1px 2px rgba(28,25,23,.04),0 1px 3px rgba(28,25,23,.06);
+    --shadow-md:0 6px 16px rgba(28,25,23,.08);
+    --shadow-lg:0 16px 40px rgba(28,25,23,.12);
+    --radius:14px; --radius-sm:10px; --radius-xs:9px; --radius-pill:999px;
     --maxw:1120px;
     --font:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     --font-num:"Geist","Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
 }
 @media (prefers-color-scheme:dark){
     :root{
-        --bg:#0b1120; --surface:#111827; --surface-2:#1e293b;
-        --text:#f1f5f9; --text-dim:#94a3b8; --text-mute:#64748b;
-        --border:#1e293b; --border-strong:#334155;
-        --accent:#fb923c; --accent-hover:#fdba74; --accent-soft:#2a1a0f; --accent-line:rgba(251,146,60,.35); --accent-ring:rgba(251,146,60,.35);
+        --bg:#12100e; --surface:#1c1917; --surface-2:#292524;
+        --text:#f5f5f4; --text-dim:#a8a29e; --text-mute:#78716c;
+        --border:#292524; --border-strong:#44403c;
+        --accent:#fb7546; --accent-hover:#fda07a; --accent-soft:#2a1a0f; --accent-line:rgba(251,117,70,.35); --accent-ring:rgba(251,117,70,.35);
+        --black:#0b0a09; --black-2:#1c1917; --rust:#e07a4f; --rust-soft:#2a1a0f; --steel:#a8a29e;
         --ok:#2dd4bf; --mint-bg:#0f2f2b; --mint-text:#5eead4; --mint-line:rgba(45,212,191,.3);
         --warn:#fbbf24; --warn-soft:rgba(251,191,36,.12);
-        --pill-bg:#1e293b; --pill-border:#334155; --pill-text:#cbd5e1;
+        --pill-bg:#292524; --pill-border:#44403c; --pill-text:#d6d3d1;
         --shadow-sm:0 1px 2px rgba(0,0,0,.4); --shadow-md:0 6px 18px rgba(0,0,0,.5); --shadow-lg:0 16px 40px rgba(0,0,0,.6);
     }
 }
@@ -57,19 +59,53 @@ a:hover{ text-decoration:underline; }
 [hidden]{ display:none!important; }
 .ic{ width:1.15em; height:1.15em; flex:none; display:inline-block; vertical-align:middle; }
 
-/* ---- Header fijo ---- */
-.site-header{ position:sticky; top:0; z-index:50; background:rgba(255,255,255,.85);
-    -webkit-backdrop-filter:saturate(1.6) blur(10px); backdrop-filter:saturate(1.6) blur(10px);
-    border-bottom:1px solid var(--border); }
-@media (prefers-color-scheme:dark){ .site-header{ background:rgba(17,24,39,.85); } }
-.header-inner{ max-width:var(--maxw); margin:0 auto; padding:.7rem 1.25rem;
+/* ---- Header negro fijo (con buscador siempre visible) ---- */
+.site-header{ position:sticky; top:0; z-index:50; background:var(--black); border-bottom:3px solid var(--accent); }
+.header-inner{ max-width:var(--maxw); margin:0 auto; padding:.65rem 1.25rem;
     display:flex; align-items:center; gap:1rem; }
-.brand{ font-weight:800; font-size:1.15rem; color:var(--text); letter-spacing:-.01em; white-space:nowrap; }
+.brand{ display:flex; align-items:center; gap:.6rem; font-weight:800; font-size:1.08rem; color:#fff;
+    letter-spacing:-.01em; white-space:nowrap; text-transform:uppercase; }
 .brand:hover{ text-decoration:none; }
-.brand .logo{ color:var(--accent); }
-.site-nav{ margin-left:auto; display:flex; gap:.25rem; align-items:center; }
-.site-nav a{ color:var(--text-dim); font-weight:600; font-size:.92rem; padding:.45rem .7rem; border-radius:8px; }
-.site-nav a:hover{ color:var(--text); background:var(--surface-2); text-decoration:none; }
+.brand .logo{ width:34px; height:34px; border-radius:9px; background:var(--accent); flex:none;
+    display:flex; align-items:center; justify-content:center; color:#fff; }
+.brand .logo .ic{ width:1.25rem; height:1.25rem; }
+.brand .bt span{ color:var(--accent); }
+.hsearch{ flex:1 1 auto; position:relative; display:flex; align-items:center; max-width:620px; margin:0 auto; }
+.hsearch > .ic{ position:absolute; left:.85rem; color:var(--text-mute); width:1.15rem; height:1.15rem; pointer-events:none; }
+.hsearch button .ic{ width:1rem; height:1rem; }
+.hsearch input{ width:100%; height:44px; padding:0 6.6rem 0 2.6rem; border:1px solid #3a332e; border-radius:var(--radius-sm);
+    background:#fff; color:#1c1917; font-size:1rem; font-family:inherit; }
+.hsearch input::placeholder{ color:var(--text-mute); }
+.hsearch button{ position:absolute; right:.35rem; height:34px; padding:0 1rem; border:0; border-radius:8px;
+    background:var(--accent); color:#fff; font-weight:700; font-size:.88rem; font-family:inherit; cursor:pointer;
+    display:flex; align-items:center; gap:.4rem; text-transform:uppercase; letter-spacing:.02em; }
+.hsearch button:hover{ background:var(--accent-hover); }
+.site-nav{ display:flex; gap:.2rem; align-items:center; }
+.site-nav a{ color:#d6d3d1; font-weight:600; font-size:.92rem; padding:.45rem .7rem; border-radius:8px; }
+.site-nav a:hover{ color:#fff; background:rgba(255,255,255,.08); text-decoration:none; }
+@media (max-width:720px){
+    .header-inner{ flex-wrap:wrap; gap:.6rem; }
+    .brand{ font-size:1rem; }
+    .hsearch{ order:3; flex-basis:100%; max-width:none; }
+    .site-nav{ margin-left:auto; }
+}
+
+/* ---- Carrusel de ferreterías ---- */
+.carousel{ position:relative; }
+.track{ display:flex; gap:.8rem; overflow-x:auto; padding:.3rem .1rem .7rem; scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+.track::-webkit-scrollbar{ display:none; }
+.store{ flex:0 0 auto; width:9.5rem; background:var(--surface); border:1px solid var(--border);
+    border-radius:var(--radius-sm); padding:1rem .9rem; box-shadow:var(--shadow-sm); display:flex; flex-direction:column;
+    align-items:center; gap:.55rem; scroll-snap-align:start; text-align:center;
+    transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease; }
+.store:hover{ transform:translateY(-3px); box-shadow:var(--shadow-md); border-color:var(--accent); text-decoration:none; }
+.store .tile{ width:3.1rem; height:3.1rem; border-radius:.7rem; display:flex; align-items:center; justify-content:center;
+    color:#fff; font-weight:800; font-size:1.05rem; letter-spacing:-.02em; flex:none; }
+.store .snm{ font-weight:700; font-size:.92rem; color:var(--text); }
+.store .cnt{ font-size:.76rem; color:var(--text-dim); font-variant-numeric:tabular-nums; }
+.fade-r{ position:absolute; top:0; bottom:.7rem; right:0; width:3.5rem; pointer-events:none;
+    background:linear-gradient(90deg,transparent,var(--bg)); }
 
 .wrap{ max-width:var(--maxw); margin:0 auto; padding:1.5rem 1.25rem 3rem; }
 
@@ -265,16 +301,38 @@ article.guia table{ margin:1.2rem 0; }
 /* ---- Varios ---- */
 .vacio{ text-align:center; padding:3rem 1rem; color:var(--text-dim); background:var(--surface);
     border:1px dashed var(--border-strong); border-radius:var(--radius); }
-.site-footer{ border-top:1px solid var(--border); background:var(--surface); margin-top:3rem; }
-.site-footer .wrap-footer{ max-width:var(--maxw); margin:0 auto; padding:1.7rem 1.25rem; font-size:.85rem; color:var(--text-dim); }
-.site-footer a{ color:var(--text-dim); font-weight:600; }
+.site-footer{ background:var(--black); color:#a8a29e; margin-top:3rem; border-top:3px solid var(--accent); }
+.site-footer a{ color:#a8a29e; }
+.site-footer a:hover{ color:#fff; }
+.foot-main{ max-width:var(--maxw); margin:0 auto; padding:2.2rem 1.25rem 1.6rem; display:flex;
+    justify-content:space-between; gap:2rem 2.5rem; flex-wrap:wrap; }
+.foot-about{ max-width:22rem; }
+.foot-about .brand{ margin-bottom:.7rem; }
+.foot-about p{ color:#78716c; font-size:.86rem; }
+.foot-col h5{ color:#fff; font-size:.8rem; text-transform:uppercase; letter-spacing:.04em; margin-bottom:.7rem; }
+.foot-col a{ display:block; font-size:.88rem; margin-bottom:.5rem; }
+.foot-bottom .wrap-footer{ max-width:var(--maxw); margin:0 auto; padding:1rem 1.25rem 2.2rem; border-top:1px solid #3a332e;
+    display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap; font-size:.84rem; color:#78716c; }
+.foot-bottom .wrap-footer a{ color:#a8a29e; }
+.we2{ display:inline-flex; align-items:center; gap:.5rem; font-weight:600; color:#d6d3d1; }
+.we2 strong{ color:#fff; font-weight:700; }
+.we2 .w2mark{ width:1.5rem; height:1.5rem; border-radius:.4rem; background:var(--accent); color:#fff;
+    font-weight:800; font-size:.7rem; display:flex; align-items:center; justify-content:center; }
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://preciosferreteria.cl/"}, {"@type": "ListItem", "position": 2, "name": "Ceramica", "item": "https://preciosferreteria.cl/categoria/ceramica/"}, {"@type": "ListItem", "position": 3, "name": "Corta Ceramica Truper Prof. 40Cms 12929"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Product", "name": "Corta Ceramica Truper Prof. 40Cms 12929", "category": "Ceramica", "brand": {"@type": "Brand", "name": "dabcl"}, "image": "https://cdn.shopify.com/s/files/1/0792/8099/6537/files/cortador-de-ceramica-16-40cm-truper.png?v=1781820143", "offers": {"@type": "Offer", "price": 43596, "priceCurrency": "CLP", "availability": "https://schema.org/InStock", "url": "https://preciosferreteria.cl/producto/corta-ceramica-truper-prof-40cms-12929-dab-1012549/", "seller": {"@type": "Organization", "name": "DAB"}}}</script>
 </head>
 <body>
 <header class="site-header">
   <div class="header-inner">
-    <a class="brand" href="https://preciosferreteria.cl/"><span class="logo">🔩</span> Precios Ferretería</a>
+    <a class="brand" href="https://preciosferreteria.cl/">
+      <span class="logo"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 5.5a3.5 3.5 0 0 0-4.6 4.2L3 16.6 5.4 19l6.9-6.9a3.5 3.5 0 0 0 4.2-4.6l-2.1 2.1-2-.5-.5-2 2.1-2.1z"/></svg></span>
+      <span class="bt">Precios<span>Ferretería</span></span>
+    </a>
+    <form class="hsearch" role="search" action="https://preciosferreteria.cl/" method="get">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
+      <input type="text" id="q" name="q" placeholder="Busca materiales… (ej: cemento, fierro 8mm, volcanita)" autocomplete="off">
+      <button type="submit"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>Buscar</button>
+    </form>
     <nav class="site-nav">
       <a href="https://preciosferreteria.cl/">Inicio</a>
       <a href="https://preciosferreteria.cl/guias/">Guías</a>
@@ -299,12 +357,35 @@ article.guia table{ margin:1.2rem 0; }
 
 </main>
 <footer class="site-footer">
-  <div class="wrap-footer">
-    <p><a href="https://preciosferreteria.cl/">Precios Ferretería</a> — comparador de precios de
-    materiales de construcción y ferretería en Chile. Precios referenciales tomados
-    automáticamente de las tiendas; verifica siempre el precio final en el sitio de
-    cada tienda. Actualizado: 2026-09-09.</p>
-    <p><a href="https://preciosferreteria.cl/privacidad/">Política de privacidad</a></p>
+  <div class="foot-main">
+    <div class="foot-about">
+      <a class="brand" href="https://preciosferreteria.cl/"><span class="logo"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 5.5a3.5 3.5 0 0 0-4.6 4.2L3 16.6 5.4 19l6.9-6.9a3.5 3.5 0 0 0 4.2-4.6l-2.1 2.1-2-.5-.5-2 2.1-2.1z"/></svg></span><span class="bt">Precios<span>Ferretería</span></span></a>
+      <p>Comparador de precios de materiales de construcción y ferretería en Chile.
+      Precios referenciales tomados automáticamente; verifica siempre el precio final
+      en cada tienda. Actualizado: 2026-09-09.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Explorar</h5>
+      <a href="https://preciosferreteria.cl/">Inicio</a>
+      <a href="https://preciosferreteria.cl/guias/">Guías de obra</a>
+    </div>
+    <div class="foot-col">
+      <h5>Categorías</h5>
+      <a href="https://preciosferreteria.cl/categoria/cemento/">Cemento</a>
+      <a href="https://preciosferreteria.cl/categoria/fierro/">Fierro</a>
+      <a href="https://preciosferreteria.cl/categoria/ceramica/">Cerámica</a>
+      <a href="https://preciosferreteria.cl/categoria/pintura/">Pintura</a>
+    </div>
+    <div class="foot-col">
+      <h5>Legal</h5>
+      <a href="https://preciosferreteria.cl/privacidad/">Política de privacidad</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div class="wrap-footer">
+      <span>© 2026 Precios Ferretería. Precios referenciales.</span>
+      <span class="we2"><span class="w2mark">w2</span>Creado por <strong>we2&nbsp;Technologies</strong></span>
+    </div>
   </div>
 </footer>
 </body>
